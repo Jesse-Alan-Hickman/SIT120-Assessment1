@@ -1,0 +1,314 @@
+/* Header */
+.logo {
+    background-color: #fef4e8;
+    float: left;
+    text-align: left;
+    width: 25%;
+    block-size: 130px;
+}
+
+.accountLogo {
+        background-color: #fef4e8;
+        display: flex;
+        color: #2a2a2a;
+        float: left;
+        text-align: right;
+        block-size: 130px;
+        align-items: center;
+        justify-content:right;
+        width: 5%;
+        font-size: 30px;
+        border-left:2px solid #ffffff;
+}
+
+.account {
+    background-color: #fef4e8;
+    color: #2a2a2a;
+    float: right;
+    align-items: center;
+    justify-content:left;
+    padding-left: 10px;
+    display: flex;
+    block-size: 130px;
+    width: 15%;
+    font-size: 15px;
+    font-family: Arial;
+}
+
+.backButton {
+    color: #2a2a2a;
+    width: 10%;
+    float: left;
+    align-items: center;
+    justify-content:center;
+    display: flex;
+    block-size: 580px;
+    border: solid#2a2a2a;
+    font-size: 35px;
+    border: 2px solid #a4a4a4;
+}
+
+.nextButton {
+    color: #2a2a2a;
+    width: 10%;
+    float: right;
+    align-items: center;
+    justify-content:center;
+    display: flex;
+    block-size: 580px;
+    font-size: 35px;
+    font-family: Arial;
+    border: 2px solid #a4a4a4;
+}
+
+.nextButton:hover {
+    background: #dfdfdf;
+}
+
+.backButton:hover {
+    background: #dfdfdf;
+}
+
+.navButton {
+    background: #fef4e8;
+    color: rgb(0, 0, 0);
+    height: 40px;
+    width: 40%;
+    border: solid #fef4e8;
+    font-size: 18px;
+    font-weight: lighter;
+    
+}
+.navButton:hover {
+    background: #dad3c9;
+}
+
+#navBar {
+    float: left;
+    align-items: center;
+    justify-content: left;
+    font-family: Arial;
+    padding-left: 10px;
+    display: flex;
+    block-size: 130px;
+    background-color: #fef4e8;
+    width: 55%;
+    padding-right: 20px;
+}
+
+#nameSymbols {
+    float: left;
+    width: 30px;
+    text-align: left;
+
+}
+
+/* Background Colour */
+@media screen {
+    body {background-color: rgb(255, 255, 255)};
+}
+
+
+/* Boys Between 480px and 1300px */
+@media screen and (min-width: 480px) and (max-width: 1300px) {
+    #boys {
+    float: left;
+    width: 50%;
+    color: #2a2a2a;
+    font-weight: bolder;
+    font-size: larger;
+    text-align: center;
+    border-right: 2px solid rgba(105, 105, 105, 0.09);
+    border-top: 4px solid rgba(105, 105, 105, 0.09);
+    }
+}
+
+/* Girls Between 480px and 1300px */
+@media screen and (min-width: 480px) and (max-width: 1300px) {
+    #girls {
+    float: right;
+    width: 50%;
+    color: #2a2a2a;
+    font-weight: bolder;
+    font-size: larger;
+    text-align: center;
+    border-left: 2px solid rgba(105, 105, 105, 0.09);
+    border-top: 4px solid rgba(105, 105, 105, 0.09);
+    }
+}
+
+/* Paragraph 1 Between 480px and 1300px */
+@media screen and (min-width: 480px) and (max-width: 1300px) {
+    #paragraph1 {
+    float: left;
+    width: 100%;
+    font-weight: bolder;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 30px;
+    text-align: left;
+    padding-left: 50px;
+    padding-right: 50px;
+    color: #2a2a2a;
+    }
+}
+
+/* Boys Over 1300px */
+@media screen and (min-width: 1300px) {
+    #boysName {
+    float: left;
+    color: #2a2a2a;
+    display: flex;
+    width: 50px;
+    height: 20px;
+   /* font-size: 35px;
+    text-align: center;
+    align-items: center;
+    justify-content: left;
+    font-family: Arial;
+    display: flex;
+    
+    width: 100px;
+    padding-left:
+   border-right: 2px solid rgba(105, 105, 105, 0.031); 
+    border-top: 3.5px solid rgba(105, 105, 105, 0.031); */
+    }
+}
+
+/* Girls Over 1300px */
+@media screen and (min-width: 1300px) {
+    #girls {
+    float: left;
+    width: 30%;
+    color: #2a2a2a;
+    font-size: 35px;
+    text-align: center;
+    /*border-left: 2px solid rgba(105, 105, 105, 0.031);*/
+    border-top: 3.5px solid rgba(105, 105, 105, 0.031);
+    }
+}
+
+/* Paragraph 1 Over 1300px */
+@media screen and (min-width: 1300px) {
+    #paragraph1 {
+    float: left;
+    width: 100%;
+    font-weight: 100;
+    font-size: 20px;
+    text-align: center;
+    color: #2a2a2a;
+    }
+}
+
+/* Boys Under 480px */
+@media screen and (max-width: 480px) {
+    #boys {
+    float: left;
+    width: 100%;
+    color: #2a2a2a;
+    font-weight: bolder;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    }
+}
+
+/* Girls Under 480px */
+@media screen and (max-width: 480px) {
+    #girls {
+    float: left;
+    width: 100%;
+    color: #2a2a2a;
+    font-weight: bolder;
+    text-align: center;
+    padding-top: 10px;
+    border-top: 4px solid rgba(105, 105, 105, 0.031);
+    }
+}
+
+/* Paragraph 1 Under 480px */
+@media screen and (max-width: 480px) {
+    #paragraph1 {
+    float: left;
+    width: 100%;
+    font-weight: bolder;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    color: #2a2a2a;
+    }
+}
+
+/* Boy Names Heading Between 480px and 1300px */
+@media screen and (min-width: 480px) and (max-width: 1300px) {
+    #boyNames {
+        color: rgb(0, 118, 161);
+        text-align: center;
+        
+    }
+}
+
+/* Girl Names Heading Between 480px and 1300px*/
+@media screen and (min-width: 480px) and (max-width: 1300px) {
+    #girlNames {
+        color: rgb(208, 78, 99);
+        text-align: center;
+    }
+}
+
+/* Boy Names Heading Over 1300px */
+@media screen and (min-width: 1300px) {
+    #boyNames {
+        color: rgb(1, 84, 115);
+        text-align: center;
+        float: left;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        font-size: 40px;
+        padding-left: 150px;
+    }
+}
+
+/* Girl Names Heading Over 1300px */
+@media screen and (min-width: 1300px) {
+    #girlNames {
+        color: rgb(208, 78, 99);
+        text-align: center;
+        float: right;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        font-size: 40px;
+        padding-right: 150px;
+    }
+}
+
+/* Boy Names Heading Under 480px */
+@media screen and (max-width: 480px) {
+    #boyNames {
+    float: left;
+    width: 50%;
+    font-weight: bolder;
+    text-align: center;
+    color: rgb(0, 118, 161);
+    }
+}
+
+/* Girl Names Heading Under 480px */
+@media screen and (max-width:480px) {
+    #girlNames {
+    float: left;
+    width: 50%;
+    font-weight: bolder;
+    text-align: center;
+    color: rgb(208, 78, 99);
+    }
+}
+
+
+
+

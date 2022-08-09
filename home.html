@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Character set -->
+    <meta charset="UTF-8">
+    <!-- Linking main.css -->
+    <link href="home.css" rel = "stylesheet" type = "text/css"/>
+    <!-- Linking js file -->
+    <script src="./script.js"></script>
+    <!-- Vue Import-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+    <script src="https://unpkg.com/@chenfengyuan/vue-qrcode@1.0.1/dist/vue-qrcode.min.js"></script>
+    <script>Vue.component(VueQrcode.name, VueQrcode);</script>
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+    * {
+        box-sizing: border-box;
+    }
+    </style>
+
+    <!-- Title of webpage -->
+    <title>My Baby's Name</title>
+</head>
+
+<body>
+    
+<div class="vl"></div>
+
+<!-- Logo Insert -->
+<div class="logo">
+    <img src="BabyLogo2.png" width="350" height="125" alt="Baby Logo 1" />
+</div>
+
+<!-- Navigation Bar -->
+<div id="navBar">
+    <button class="navButton" v-on:click="">Home</button>
+    <button class="navButton" v-on:click="">Name History</button>
+    <button class="navButton" v-on:click="">Favourites</button>
+    <button class="navButton" v-on:click="">My Account</button>
+    <button class="navButton" v-on:click="">Sign Out</button>
+</div>
+
+<div class="accountLogo">
+    <img src="MyAccountSymbol.png" width="30" height="30" alt="Account Logo" />
+</div>
+
+<!-- Account Name -->
+<div class="account">
+    <p>Welcome, Username!</p>
+</div>
+
+<!-- Intro Paragraph -->
+<!--<div id="paragraph1">
+    <p>
+      Search through hundreds of fantastic baby names, and pick out your favourites!
+    </p>
+</div>-->
+
+<!-- Headings -->
+<h1 id="boyNames">BOYS</h2>
+
+<h1 id="girlNames">GIRLS</h2>
+
+<!-- Left Button -->
+<div id="backButton">
+    <button class="backButton" v-on:click="">BACK</button>
+</div>
+
+<!-- List of Names-->
+<div id="boys">
+<div v-for="boyName in babyNames"> 
+    <img class="nameSymbols" v-if="!boyName.favourited" src="addSymbol.png" width="40" height="40" alt="Add Name"/>
+    <img class="nameSymbols" v-else src="heartSymbol.png" width="30" height="30" alt="Fovourited Name"/>
+    <p id="boysName"> {{boyName.name}} </p>
+</div>
+    
+    <!--
+    <p> Oliver </p>
+    <p> Asher </p>
+    <p> Theodore </p>
+    <p> Noah </p>
+    <p> Henry </p>
+    <p> Finn </p>
+    <p> Aiden </p>
+    <p> Alistair </p>
+    <p> Liam </p>
+    <p> Jasper </p>
+    <p> Declan </p>
+    <p> Silas </p>
+    <p> Sebastian </p>
+    <p> Levi </p>
+    <p> Leo </p>
+    <p> Felix </p>
+    <p> Everett </p>
+    <p> Alexander </p>
+    <p> Ethan </p>
+    <p> Caleb </p>
+    <p> Gabriel </p>
+    <p> Atticus </p>
+    <p> Owen </p>
+    <p> Benjamin </p>
+    <p> Grayson </p>
+    <p> Jackson </p>
+    <p> Elijah </p>
+    <p> Lucas </p>
+    <p> August </p>
+    <p> Milo </p>
+    <p> William </p>
+    <p> Miles </p>
+    <p> Evander </p>
+    <p> Theo </p>
+    <p> Hudson </p>
+    <p> Emmett </p>
+    <p> Arlo </p>
+    <p> Archer </p>
+    <p> Elias </p>
+    <p> Ronan </p>
+    <p> Isaac </p>
+    <p> Wesley </p>
+    <p> Micah </p>
+    <p> Atlas </p>
+    <p> Beau </p>
+    <p> Luke </p>
+    <p> Nathaniel </p>
+    <p> Thomas </p>
+    <p> Connor </p>
+    <p> Landon </p>
+    -->
+</div>
+
+<div id="girls">
+    
+    <p> Violet </p>
+    <p> Charlotte </p>
+    <p> Aurora </p>
+    <p> Amelia </p>
+    <p> Hazel </p>
+    <p> Luna </p>
+    <p> Sophia </p>
+    <!--<p> Ivy </p>
+    <p> Evelyn </p>
+    <p> Genevieve </p>
+    <p> Freya </p>
+    <p> Wren </p>
+    <p> Isla </p>
+    <p> Ava </p>
+    <p> Iris </p>
+    <p> Lily </p>
+    <p> Olivia </p>
+    <p> Adeliade </p>
+    <p> Aria </p>
+    <p> Maeve </p>
+    <p> Eleanor </p>
+    <p> Scarlett </p>
+    <p> Adeline </p>
+    <p> Grace </p>
+    <p> Ophelia </p>
+    <p> Ella </p>
+    <p> Nora </p>
+    <p> Alice </p>
+    <p> Evangeline </p>
+    <p> Naomi </p>
+    <p> Audrey </p>
+    <p> Elizabeth </p>
+    <p> Eloise </p>
+    <p> Lydia </p>
+    <p> Chloe </p>
+    <p> Cora </p>
+    <p> Clara </p>
+    <p> Rose </p>
+    <p> Celeste </p>
+    <p> Juniper </p>
+    <p> Penelope </p>
+    <p> Anastasia </p>
+    <p> Astrid </p>
+    <p> Emma </p>
+    <p> Rosalie </p>
+    <p> Athena </p>
+    <p> Abigail </p>
+    <p> Stella </p>
+    <p> Imogen </p>
+    <p> Phoebe </p> -->
+</div>
+
+<!-- Next Button -->
+<div id="nextButton">
+    <button class="nextButton" v-on:click="">NEXT</button>
+</div>
+
+<script>
+    let boys = new Vue({
+    el: '#boys',
+        data: {     
+            babyNames: [
+                {name: 'Abcdefg', favourited: false},
+                {name: 'Hijklmnop', favourited: false},
+                {name: 'Qrstuv', favourited: false},
+                {name: 'Wxyz', favourited: false},
+                {name: 'NIKMABC', favourited: false},
+                {name: 'NTWYSWM', favourited: false},
+                {name: 'NTWYSWM', favourited: false},                
+            ],
+            methods: {
+                nameLoop(){
+                    return true;
+                }
+            }
+        },
+    });
+</script>
+
+</body>
+
+</html>
