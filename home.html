@@ -61,22 +61,67 @@
 
 <!-- Headings -->
 <h1 id="boyNames">BOYS</h2>
-
 <h1 id="girlNames">GIRLS</h2>
 
-<!-- Left Button -->
+<!-- Back Button -->
 <div id="backButton">
-    <button class="backButton" v-on:click="">BACK</button>
+    <button class="backButton" style="vertical-align:middle"><span>Back</span></button>
+</div>
+
+<!-- Next Button -->
+<div id="nextButton">
+    <button class="nextButton" style="vertical-align:middle"><span>Next</span></button>
 </div>
 
 <!-- List of Names-->
 <div id="boys">
-<div v-for="boyName in babyNames"> 
-    <img class="nameSymbols" v-if="!boyName.favourited" src="addSymbol.png" width="40" height="40" alt="Add Name"/>
-    <img class="nameSymbols" v-else src="heartSymbol.png" width="30" height="30" alt="Fovourited Name"/>
-    <p id="boysName"> {{boyName.name}} </p>
-</div>
+    <div class="grid-container1">
+        <div class="item1" style=""></div>
+        <div class="item2"><img class="nameSymbols" src="heartSymbol.png" width="30" height="30" alt="Fovourited Name"/></div>
+        <div class="item3">{{ message1 }}</div>
+        <div class="item4"></div>  
+        <div class="item5"><img class="nameSymbols" src="addSymbol.png" width="40" height="40" alt="Add Name"/></div>
+        <div class="item6">{{ message2 }}</div>
+        <div class="item7"></div>
+        <div class="item8"><img class="nameSymbols" src="addSymbol.png" width="40" height="40" alt="Add Name"/></div>
+        <div class="item9">{{ message3 }}</div>
+        <div class="item10"></div>
+        <div class="item11"><img class="nameSymbols" src="heartSymbol.png" width="30" height="30" alt="Fovourited Name"/></div>
+        <div class="item12">{{ message4 }}</div>
+        <div class="item13"></div>
+        <div class="item14"><img class="nameSymbols" src="addSymbol.png" width="40" height="40" alt="Add Name"/></div>
+        <div class="item15">{{ message5 }}</div>
+        <div class="item16"></div>
+        <div class="item17"><img class="nameSymbols" src="heartSymbol.png" width="30" height="30" alt="Fovourited Name"/></div>
+        <div class="item18">{{ message6 }}</div>
     
+    </div>
+    <div class="grid-container2">
+        <div class="item1"></div>
+        <div class="item2"><img class="nameSymbols" src="addSymbol.png" width="40" height="40" alt="Add Name"/></div>
+        <div class="item3">{{ message7 }}</div>
+        <div class="item4"></div>  
+        <div class="item5"><img class="nameSymbols" src="addSymbol.png" width="40" height="40" alt="Add Name"/></div>
+        <div class="item6">{{ message8 }}</div>
+        <div class="item7"></div>
+        <div class="item8"><img class="nameSymbols" src="addSymbol.png" width="40" height="40" alt="Add Name"/></div>
+        <div class="item9">{{ message9 }}</div>
+        <div class="item10"></div>
+        <div class="item11"><img class="nameSymbols" src="addSymbol.png" width="40" height="40" alt="Add Name"/></div>
+        <div class="item12">{{ message10 }}</div>
+        <div class="item13"></div>
+        <div class="item14"><img class="nameSymbols" src="addSymbol.png" width="40" height="40" alt="Add Name"/></div>
+        <div class="item15">{{ message11 }}</div>
+        <div class="item16"></div>
+        <div class="item17"><img class="nameSymbols" src="heartSymbol.png" width="30" height="30" alt="Fovourited Name"/></div>
+        <div class="item18">{{ message12 }}</div>
+
+
+    </div>
+   <!--<div v-for="boyName in babyNames"> 
+        <img class="nameSymbols" v-if="!boyName.favourited" src="addSymbol.png" width="40" height="40" alt="Add Name"/>
+        <img class="nameSymbols" v-else src="heartSymbol.png" width="30" height="30" alt="Fovourited Name"/>
+    </div> -->
     <!--
     <p> Oliver </p>
     <p> Asher </p>
@@ -132,7 +177,7 @@
 </div>
 
 <div id="girls">
-    
+    <!--
     <p> Violet </p>
     <p> Charlotte </p>
     <p> Aurora </p>
@@ -140,7 +185,7 @@
     <p> Hazel </p>
     <p> Luna </p>
     <p> Sophia </p>
-    <!--<p> Ivy </p>
+    <p> Ivy </p>
     <p> Evelyn </p>
     <p> Genevieve </p>
     <p> Freya </p>
@@ -185,27 +230,36 @@
     <p> Phoebe </p> -->
 </div>
 
-<!-- Next Button -->
-<div id="nextButton">
-    <button class="nextButton" v-on:click="">NEXT</button>
-</div>
-
 <script>
     let boys = new Vue({
     el: '#boys',
         data: {     
+            message1: 'Oliver',
+            message2: 'Asher',
+            message3: 'Theodore',
+            message4: 'Noah',
+            message5: 'Henry',
+            message6: 'Finn',
+            message7: 'Charlotte',
+            message8: 'Aurora',
+            message9: 'Amelia',
+            message10: 'Hazel',
+            message11: 'Violet',
+            message12: 'Luna',
             babyNames: [
-                {name: 'Abcdefg', favourited: false},
-                {name: 'Hijklmnop', favourited: false},
-                {name: 'Qrstuv', favourited: false},
-                {name: 'Wxyz', favourited: false},
-                {name: 'NIKMABC', favourited: false},
-                {name: 'NTWYSWM', favourited: false},
-                {name: 'NTWYSWM', favourited: false},                
+                {name1: 'Abcdefg', favourited: false},
+                {name2: 'Hijklmnop', favourited: false},
+                {name3: 'Qrstuv', favourited: false},
+                {name4: 'Wxyz', favourited: false},
+                {name5: 'NIKMABC', favourited: false},
+                {name6: 'NTWYSWM', favourited: false},
+                {name7: 'NTWYSWM', favourited: false},                
             ],
             methods: {
-                nameLoop(){
-                    return true;
+                nameLoop: function() {
+                    if (babyNames.favourited = false) {
+                        return 'Hello';
+                    }
                 }
             }
         },

@@ -35,40 +35,99 @@
     font-family: Arial;
 }
 
+/* BackButton */
 .backButton {
-    color: #2a2a2a;
     width: 10%;
     float: left;
-    align-items: center;
-    justify-content:center;
-    display: flex;
-    block-size: 580px;
-    border: solid#2a2a2a;
-    font-size: 35px;
-    border: 2px solid #a4a4a4;
-}
-
-.nextButton {
-    color: #2a2a2a;
-    width: 10%;
-    float: right;
-    align-items: center;
-    justify-content:center;
-    display: flex;
-    block-size: 580px;
+    justify-content: center;
+    padding: 20px;
     font-size: 35px;
     font-family: Arial;
-    border: 2px solid #a4a4a4;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    background-color: #808080;;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    transition: all 0.5;
+    cursor: pointer;
+    opacity: 0.8;
 }
 
-.nextButton:hover {
-    background: #dfdfdf;
+.backButton span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+.backButton span:after {
+    content: '\00ab';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: 20px;
+    transition: 0.5s;
+    padding-right: 75px;
 }
 
-.backButton:hover {
-    background: #dfdfdf;
+.backButton:hover span {
+    padding-left: 25px;
+  }
+  
+.backButton:hover span:after {
+    opacity: 1;
+    right: 0;
 }
 
+/* NextButton */
+.nextButton {
+    width: 10%;
+    float: right;
+    justify-content: center;
+    padding: 20px;
+    font-size: 35px;
+    font-family: Arial;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    background-color: #808080;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    transition: all 0.5;
+    cursor: pointer;
+    opacity: 0.8;
+    vertical-align: center;
+}
+
+.nextButton span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+.nextButton span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.nextButton:hover span {
+    padding-right: 25px;
+  }
+  
+.nextButton:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+/* Navigation */
 .navButton {
     background: #fef4e8;
     color: rgb(0, 0, 0);
@@ -77,6 +136,7 @@
     border: solid #fef4e8;
     font-size: 18px;
     font-weight: lighter;
+    transition: all 0.5s;
     
 }
 .navButton:hover {
@@ -96,18 +156,110 @@
     padding-right: 20px;
 }
 
+/* Naming symbols */
 #nameSymbols {
     float: left;
     width: 30px;
     text-align: left;
-
 }
 
-/* Background Colour */
+/* Grid */
+.grid-container1 {
+    width: 40%;
+    display: grid;
+    float: left;
+    grid-template-columns:145px 80px 100px;
+    grid-template-rows: 85px 85px 85px 85px 85px 85px;
+    gap: 10px;
+    background-color: #fffdfa;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    opacity: 0.7;
+  }
+
+  .grid-container2 {
+    width: 40%;
+    display: grid;
+    float: right;
+    grid-template-columns:145px 80px 100px;
+    grid-template-rows: 85px 85px 85px 85px 85px 85px;
+    gap: 10px;
+    background-color: #fffdfa;
+    padding: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    opacity: 0.7;
+  }
+  
+  .grid-container1 > div {
+    background-color: #fffdfa;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 40px;
+  }
+  
+  .grid-container2 > div {
+    background-color: #fffdfa;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 40px;
+  }
+
+
+/* Body CSS */
 @media screen {
-    body {background-color: rgb(255, 255, 255)};
+    body {
+        background-image: url("BackgroundImage.jpg");
+    }
 }
 
+/* Boys Over 1300px */
+@media screen and (min-width: 1300px) {
+    #boysName {
+    float: left;
+    color: #2a2a2a;
+    display: flex;
+    width: 50px;
+    height: 20px;
+    font-size: 35px;
+    text-align: center;
+    align-items: center;
+    justify-content: left;
+    font-family: Arial;
+    display: flex;
+    width: 100px;
+    /*
+    padding-left:
+    border-right: 2px solid rgba(105, 105, 105, 0.031); 
+    border-top: 3.5px solid rgba(105, 105, 105, 0.031); */
+    }
+}
+
+/* Girls Over 1300px */
+@media screen and (min-width: 1300px) {
+    #girls {
+    float: left;
+    width: 30%;
+    color: #2a2a2a;
+    font-size: 35px;
+    text-align: center;
+    /*border-left: 2px solid rgba(105, 105, 105, 0.031);*/
+    border-top: 3.5px solid rgba(105, 105, 105, 0.031);
+    }
+}
+
+/* Paragraph 1 Over 1300px */
+@media screen and (min-width: 1300px) {
+    #paragraph1 {
+    float: left;
+    width: 100%;
+    font-weight: 100;
+    font-size: 20px;
+    text-align: center;
+    color: #2a2a2a;
+    }
+}
 
 /* Boys Between 480px and 1300px */
 @media screen and (min-width: 480px) and (max-width: 1300px) {
@@ -148,53 +300,6 @@
     text-align: left;
     padding-left: 50px;
     padding-right: 50px;
-    color: #2a2a2a;
-    }
-}
-
-/* Boys Over 1300px */
-@media screen and (min-width: 1300px) {
-    #boysName {
-    float: left;
-    color: #2a2a2a;
-    display: flex;
-    width: 50px;
-    height: 20px;
-   /* font-size: 35px;
-    text-align: center;
-    align-items: center;
-    justify-content: left;
-    font-family: Arial;
-    display: flex;
-    
-    width: 100px;
-    padding-left:
-   border-right: 2px solid rgba(105, 105, 105, 0.031); 
-    border-top: 3.5px solid rgba(105, 105, 105, 0.031); */
-    }
-}
-
-/* Girls Over 1300px */
-@media screen and (min-width: 1300px) {
-    #girls {
-    float: left;
-    width: 30%;
-    color: #2a2a2a;
-    font-size: 35px;
-    text-align: center;
-    /*border-left: 2px solid rgba(105, 105, 105, 0.031);*/
-    border-top: 3.5px solid rgba(105, 105, 105, 0.031);
-    }
-}
-
-/* Paragraph 1 Over 1300px */
-@media screen and (min-width: 1300px) {
-    #paragraph1 {
-    float: left;
-    width: 100%;
-    font-weight: 100;
-    font-size: 20px;
-    text-align: center;
     color: #2a2a2a;
     }
 }
@@ -240,6 +345,38 @@
     }
 }
 
+/* Boy Names Heading Over 1300px */
+@media screen and (min-width: 1300px) {
+    #boyNames {
+        color: rgb(0, 106, 145);
+        text-align: center;
+        float: left;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        font-size: 60px;
+        padding-left: 150px;
+        padding-top: 20px;
+        font-family: Helvetica;
+    }
+}
+
+/* Girl Names Heading Over 1300px */
+@media screen and (min-width: 1300px) {
+    #girlNames {
+        color: rgb(229, 65, 93);
+        text-align: center;
+        float: right;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        font-size: 60px;
+        padding-right: 150px;
+        padding-top: 20px;
+        font-family: Helvetica;
+    }
+}
+
 /* Boy Names Heading Between 480px and 1300px */
 @media screen and (min-width: 480px) and (max-width: 1300px) {
     #boyNames {
@@ -254,36 +391,6 @@
     #girlNames {
         color: rgb(208, 78, 99);
         text-align: center;
-    }
-}
-
-/* Boy Names Heading Over 1300px */
-@media screen and (min-width: 1300px) {
-    #boyNames {
-        color: rgb(1, 84, 115);
-        text-align: center;
-        float: left;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 50%;
-        font-size: 40px;
-        padding-left: 150px;
-    }
-}
-
-/* Girl Names Heading Over 1300px */
-@media screen and (min-width: 1300px) {
-    #girlNames {
-        color: rgb(208, 78, 99);
-        text-align: center;
-        float: right;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 50%;
-        font-size: 40px;
-        padding-right: 150px;
     }
 }
 
