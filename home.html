@@ -52,17 +52,6 @@
     <p>Welcome, Username!</p>
 </div>
 
-<!-- Intro Paragraph -->
-<!--<div id="paragraph1">
-    <p>
-      Search through hundreds of fantastic baby names, and pick out your favourites!
-    </p>
-</div>-->
-
-<!-- Headings -->
-<h1 id="boyNames">BOYS</h2>
-<h1 id="girlNames">GIRLS</h2>
-
 <!-- Back Button -->
 <div id="backButton">
     <button class="backButton" style="vertical-align:middle"><span>Back</span></button>
@@ -118,11 +107,14 @@
 
 
     </div>
-   <!--<div v-for="boyName in babyNames"> 
+
+    <!-- Irrelevant Practice Information
+
+   <div v-for="boyName in babyNames"> 
         <img class="nameSymbols" v-if="!boyName.favourited" src="addSymbol.png" width="40" height="40" alt="Add Name"/>
         <img class="nameSymbols" v-else src="heartSymbol.png" width="30" height="30" alt="Fovourited Name"/>
-    </div> -->
-    <!--
+    </div>
+    
     <p> Oliver </p>
     <p> Asher </p>
     <p> Theodore </p>
@@ -173,11 +165,11 @@
     <p> Thomas </p>
     <p> Connor </p>
     <p> Landon </p>
-    -->
+
 </div>
 
 <div id="girls">
-    <!--
+    
     <p> Violet </p>
     <p> Charlotte </p>
     <p> Aurora </p>
@@ -227,8 +219,9 @@
     <p> Abigail </p>
     <p> Stella </p>
     <p> Imogen </p>
-    <p> Phoebe </p> -->
+    <p> Phoebe </p>
 </div>
+-->
 
 <script>
     let boys = new Vue({
@@ -246,22 +239,6 @@
             message10: 'Hazel',
             message11: 'Violet',
             message12: 'Luna',
-            babyNames: [
-                {name1: 'Abcdefg', favourited: false},
-                {name2: 'Hijklmnop', favourited: false},
-                {name3: 'Qrstuv', favourited: false},
-                {name4: 'Wxyz', favourited: false},
-                {name5: 'NIKMABC', favourited: false},
-                {name6: 'NTWYSWM', favourited: false},
-                {name7: 'NTWYSWM', favourited: false},                
-            ],
-            methods: {
-                nameLoop: function() {
-                    if (babyNames.favourited = false) {
-                        return 'Hello';
-                    }
-                }
-            }
         },
     });
 </script>

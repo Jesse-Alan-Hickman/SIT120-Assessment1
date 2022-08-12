@@ -171,7 +171,7 @@
     grid-template-columns:145px 80px 100px;
     grid-template-rows: 85px 85px 85px 85px 85px 85px;
     gap: 10px;
-    background-color: #fffdfa;
+    background-color: #edfffe;
     padding: 10px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -185,7 +185,7 @@
     grid-template-columns:145px 80px 100px;
     grid-template-rows: 85px 85px 85px 85px 85px 85px;
     gap: 10px;
-    background-color: #fffdfa;
+    background-color: #fff2fb;
     padding: 10px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -193,24 +193,23 @@
   }
   
   .grid-container1 > div {
-    background-color: #fffdfa;
+    background-color: #edfffe;
     text-align: center;
     padding: 20px 0;
     font-size: 40px;
   }
   
   .grid-container2 > div {
-    background-color: #fffdfa;
+    background-color: #fff2fb;
     text-align: center;
     padding: 20px 0;
     font-size: 40px;
   }
 
-
 /* Body CSS */
 @media screen {
     body {
-        background-image: url("BackgroundImage.jpg");
+        background-color: #ffffff
     }
 }
 
@@ -229,10 +228,6 @@
     font-family: Arial;
     display: flex;
     width: 100px;
-    /*
-    padding-left:
-    border-right: 2px solid rgba(105, 105, 105, 0.031); 
-    border-top: 3.5px solid rgba(105, 105, 105, 0.031); */
     }
 }
 
@@ -330,91 +325,7 @@
     }
 }
 
-/* Paragraph 1 Under 480px */
-@media screen and (max-width: 480px) {
-    #paragraph1 {
-    float: left;
-    width: 100%;
-    font-weight: bolder;
-    text-align: left;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 50px;
-    padding-right: 50px;
-    color: #2a2a2a;
-    }
-}
 
-/* Boy Names Heading Over 1300px */
-@media screen and (min-width: 1300px) {
-    #boyNames {
-        color: rgb(0, 106, 145);
-        text-align: center;
-        float: left;
-        align-items: center;
-        justify-content: center;
-        width: 50%;
-        font-size: 60px;
-        padding-left: 150px;
-        padding-top: 20px;
-        font-family: Helvetica;
-    }
-}
-
-/* Girl Names Heading Over 1300px */
-@media screen and (min-width: 1300px) {
-    #girlNames {
-        color: rgb(229, 65, 93);
-        text-align: center;
-        float: right;
-        align-items: center;
-        justify-content: center;
-        width: 50%;
-        font-size: 60px;
-        padding-right: 150px;
-        padding-top: 20px;
-        font-family: Helvetica;
-    }
-}
-
-/* Boy Names Heading Between 480px and 1300px */
-@media screen and (min-width: 480px) and (max-width: 1300px) {
-    #boyNames {
-        color: rgb(0, 118, 161);
-        text-align: center;
-        
-    }
-}
-
-/* Girl Names Heading Between 480px and 1300px*/
-@media screen and (min-width: 480px) and (max-width: 1300px) {
-    #girlNames {
-        color: rgb(208, 78, 99);
-        text-align: center;
-    }
-}
-
-/* Boy Names Heading Under 480px */
-@media screen and (max-width: 480px) {
-    #boyNames {
-    float: left;
-    width: 50%;
-    font-weight: bolder;
-    text-align: center;
-    color: rgb(0, 118, 161);
-    }
-}
-
-/* Girl Names Heading Under 480px */
-@media screen and (max-width:480px) {
-    #girlNames {
-    float: left;
-    width: 50%;
-    font-weight: bolder;
-    text-align: center;
-    color: rgb(208, 78, 99);
-    }
-}
 
 
 
