@@ -8,7 +8,7 @@
 }
 
 .accountLogo {
-        background-color: #fef4e8;
+        background-color: #ffebd2;
         display: flex;
         color: #2a2a2a;
         float: left;
@@ -22,7 +22,7 @@
 }
 
 .account {
-    background-color: #fef4e8;
+    background-color: #ffebd2;
     color: #2a2a2a;
     float: right;
     align-items: center;
@@ -129,18 +129,22 @@
 
 /* Navigation */
 .navButton {
-    background: #fef4e8;
-    color: rgb(0, 0, 0);
+    color: #646464;
     height: 40px;
     width: 40%;
     border: solid #fef4e8;
-    font-size: 18px;
+    font-size: 25px;
     font-weight: lighter;
     transition: all 0.5s;
-    
+    text-align: center;
+    font-family: Verdana, Tahoma, sans-serif;
+    border-radius: 0.5em;
+    display: block;
 }
+
 .navButton:hover {
-    background: #dad3c9;
+    color: black;
+    background-color: #fcead4;
 }
 
 #navBar {

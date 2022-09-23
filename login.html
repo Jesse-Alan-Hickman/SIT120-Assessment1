@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Character set -->
+        <meta charset="UTF-8">
+        <!-- Linking main.css -->
+        <link href="main.css" rel = "stylesheet" type = "text/css"/>
+        <link href="style.css" rel = "stylesheet" type = "text/css"/>
+        <!-- Linking js file -->
+        <script src="./script.js"></script>
+        <!-- Vue Import-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+        <script src="https://unpkg.com/@chenfengyuan/vue-qrcode@1.0.1/dist/vue-qrcode.min.js"></script>
+        <script>Vue.component(VueQrcode.name, VueQrcode);</script>
+        <!-- Viewport -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+        * {
+            box-sizing: border-box;
+        }
+        </style>
+
+        <!-- Title of webpage -->
+        <title>My Baby's Tester</title>
+    </head>
+
+    <body>
+        <div id="container">
+            <div id="main">
+
+                <!-- Logo Insert -->
+                <div id="loginLogo">
+                    <img src="./images/baby_logo_white.png" width="800" height="270" alt="Baby Logo" />
+                </div>
+
+                <!-- Account Name -->
+                <div id="login">
+                    <div id="credentials">
+                        <div id="signIn" v-show="oldUser">
+                        <h2>Welcome Back!</h2>
+                        <br>
+                            <input type="text" class="inputElement" placeholder="   Enter your username">
+                            <br><br>
+                            <input type="password" class="inputElement" placeholder="   Enter your password">
+                            <br><br>
+                            <input type="submit" class="accessButton" value="Log In"></input>
+                            <br><br>
+                            <h2>OR</h2>
+                            <br>
+                            <button class="accessButton" @click="oldUser = !oldUser" >Create an Account</button>
+                        </div>
+                        <div id="signUp" v-show="oldUser==false">
+                            <h2>Create a new Account</h2>
+                            <br>
+                            <input type="text" v-model="usernameNew" class="inputElement" placeholder="   Enter new Username">
+                            <br><br><br>
+                            <input type="password" v-model="passwordNew" class="inputElement" placeholder="   Enter new Password">
+                            <br><br>
+                            <input type="password" v-model="passwordCheck" class="inputElement" placeholder="   Confirm new Password">
+                            <br><br>
+                            <input type="submit" class="accessButton" value="Create my Account"></input>
+                            <br><br>
+                            <button class="accessButton" @click="oldUser = !oldUser" >I already have an account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer id="footer">
+            <ul><b><i>SIT120 - Introduction to Responsive Web Applications</ul>
+            <ul>Created by: Jesse Alan Hickman</i></b></ul>
+        </footer>
+
+        <script>
+            let login = new Vue({
+            el: '#login',
+                data: {     
+                    username:'',
+                    password:'',
+                    usernameNew:'',
+                    passwordNew:'',
+                    passwordCheck:'',
+                    oldUser: true,
+                },
+            });
+        </script>
+    </body>
+</html>
