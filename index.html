@@ -48,9 +48,9 @@
                 </div>
 
                 <!-- Account Name -->
-                <div id="user">
+                <div id="login">
                     <div class="account">
-                        <p>Welcome, {{ username }}</p>
+                        <my-account></my-account>
                     </div>
                 </div>
             </div>
@@ -62,10 +62,11 @@
         </footer>
 
         <script>
+
             let user = new Vue({
             el: '#user',
                 data: {     
-                    username: 'Jesse', 
+                    username: '', 
                 },
             });
         </script>

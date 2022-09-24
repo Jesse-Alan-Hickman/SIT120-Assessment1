@@ -44,7 +44,7 @@
                             <br><br>
                             <input type="password" class="inputElement" placeholder="   Enter your password">
                             <br><br>
-                            <input type="submit" class="accessButton" value="Log In"></input>
+                            <button class="accessButton"><a href="index.html">Log In</a></button>
                             <br><br>
                             <h2>OR</h2>
                             <br>
@@ -62,6 +62,7 @@
                             <input type="submit" class="accessButton" value="Create my Account"></input>
                             <br><br>
                             <button class="accessButton" @click="oldUser = !oldUser" >I already have an account</button>
+                            <div id="app"></div>
                         </div>
                     </div>
                 </div>
@@ -74,6 +75,14 @@
         </footer>
 
         <script>
+            Vue.component ('my-account', {
+            template: '<p>Welcome, {{ username }} </p>'
+            })
+
+            let app = new Vue({
+                el: '#app',
+            })
+        
             let login = new Vue({
             el: '#login',
                 data: {     
