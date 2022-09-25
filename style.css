@@ -52,6 +52,7 @@ a:active {
     border-radius: 0.8em;
     background-color: rgb(242, 242, 242);
     border: solid black;
+    text-indent: 20px;
 }
 
 .accessButton {
@@ -67,7 +68,7 @@ a:active {
 
 #footer {
     background-color: #ffebd2;
-    position: relative;
+    position: bottom;
     height: 80px;
     margin-top: -80px;
     clear: both;

@@ -22,24 +22,70 @@
         </style>
 
         <!-- Title of webpage -->
-        <title>My Baby's Tester</title>
+        <title>My Baby's Name</title>
     </head>
 
-    <body>
-        <div id="container">
-            <div id="main">
+    <body>  
+        <!-- Entire app - encompassing each webpage -->
+        <div id="app">
+
+            <!-- Login/Signup Page *************************************************************************************************** -->
+            <div id="login" v-show="showLogin">
+
+                <!-- Logo Insert -->
+                <div id="loginLogo">
+                    <img src="./images/baby_logo_white.png" width="800" height="270" alt="My Baby's Name - Logo" />
+                </div>
+
+                <!-- Account Name -->
+                <div id="signIn">
+                    <div id="credentials">
+                        <div id="signIn" v-show="oldUser">
+                            <h2>Welcome Back!</h2>
+                            <br>
+                            <input type="text" v-model="username" class="inputElement" placeholder="Enter your Username">
+                            <br><br>
+                            <input type="password" v-model="password" class="inputElement" placeholder="Enter your Password">
+                            <br><br>
+                            <button class="accessButton" @click="checkCredentials();">Log In</button>
+                            <br><br>
+                            <h2>OR</h2>
+                            <br>
+                            <button class="accessButton" @click="oldUser = !oldUser" >Create an Account</button>
+                        </div>
+
+                        <div id="signUp" v-show="oldUser==false">
+                            <h2>Create a new Account</h2>
+                            <br>
+                            <input type="text" v-model="usernameNew" class="inputElement" placeholder="Enter new Username">
+                            <br><br><br>
+                            <input type="text" v-model="passwordNew" class="inputElement" placeholder="Enter new Password">
+                            <br><br>
+                            <input type="text" v-model="passwordCheck" class="inputElement" placeholder="Confirm new Password">
+                            <br><br>
+                            <button class="accessButton" @click="checkNewCredentials(passwordNew, passwordCheck);">Create Account</button>
+                            <br><br>
+                            <button class="accessButton" @click="oldUser = !oldUser" >Go to Log in</button>
+                            <div id="app"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Home Page *************************************************************************************************** -->
+            <div id="home" v-show="showHome">
 
                 <!-- Logo Insert -->
                 <div class="logo">
-                    <img src="./images/BabyLogo2.png" width="350" height="125" alt="Baby Logo 2" />
+                    <img src="./images/BabyLogo2.png" width="350" height="125" alt="Baby Logo 2"/>
                 </div>
 
                 <!-- Navigation Bar -->
                 <nav id="navBar">
-                    <ul class="navButton"><a href="index.html">Home</a></ul>
-                    <ul class="navButton"><a href="library.html">Library</a></ul>
-                    <ul class="navButton"><a href="favourites.html">Favourites</a></ul>
-                    <ul class="navButton"><a href="login.html">Signout</a></ul>
+                    <ul class="navButton" style="color: black;">Home</ul>
+                    <ul class="navButton" @click="setLibraryTrue(); setHomeFalse();">Library</ul>
+                    <ul class="navButton" @click="setFavouritesTrue(); setHomeFalse();">Favourites</ul>
+                    <ul class="navButton" @click="setLoginTrue(); setHomeFalse();">Signout</ul>
                 </nav>
 
                 <!-- Nav Bar Logo-->
@@ -48,25 +94,157 @@
                 </div>
 
                 <!-- Account Name -->
-                <div id="login">
-                    <div class="account">
-                        <my-account></my-account>
-                    </div>
+                <div class="account">
+                    <h4>Welcome, {{ username }}!</h4>
                 </div>
+
+                <p> Home Page </p>
+
+                <footer id="footer">
+                    <ul><b><i>SIT120 - Introduction to Responsive Web Applications</ul>
+                    <ul>Created by: Jesse Alan Hickman</i></b></ul>
+                </footer>
+            </div>
+
+            <!-- Library Page *************************************************************************************************** -->
+            <div id="library" v-show="showLibrary">
+
+                <!-- Logo Insert -->
+                <div class="logo">
+                    <img src="./images/BabyLogo2.png" width="350" height="125" alt="Baby Logo 2"/>
+                </div>
+
+                <!-- Navigation Bar -->
+                <nav id="navBar">
+                    <ul class="navButton" @click="setHomeTrue(); setLibraryFalse();">Home</ul>
+                    <ul class="navButton" style="color: black;">Library</ul>
+                    <ul class="navButton" @click="setFavouritesTrue(); setLibraryFalse();">Favourites</ul>
+                    <ul class="navButton" @click="setLoginTrue(); setLibraryFalse();">Signout</ul>
+                </nav>
+
+                <!-- Nav Bar Logo-->
+                <div class="accountLogo">
+                    <img src="./images/MyAccountSymbol.png" width="30" height="30" alt="Account Logo" />
+                </div>
+
+                <!-- Account Name -->
+                <div class="account">
+                    <h4>Welcome, {{ username }}!</h4>
+                </div>
+                
+                <p> Library Page </p>
+
+                <footer id="footer">
+                    <ul><b><i>SIT120 - Introduction to Responsive Web Applications</ul>
+                    <ul>Created by: Jesse Alan Hickman</i></b></ul>
+                </footer>
+            </div>
+
+            <!-- Favourites Page *************************************************************************************************** -->
+            <div id="favourites" v-show="showFavourites">
+
+                <!-- Logo Insert -->
+                <div class="logo">
+                    <img src="./images/BabyLogo2.png" width="350" height="125" alt="Baby Logo 2"/>
+                </div>
+
+                <!-- Navigation Bar -->
+                <nav id="navBar">
+                    <ul class="navButton" @click="setHomeTrue(); setFavouritesFalse();">Home</ul>
+                    <ul class="navButton" @click="setLibraryTrue(); setFavouritesFalse();">Library</ul>
+                    <ul class="navButton" style="color: black;">Favourites</ul>
+                    <ul class="navButton" @click="setLoginTrue(); setFavouritesFalse();">Signout</ul>
+                </nav>
+
+                <!-- Nav Bar Logo-->
+                <div class="accountLogo">
+                    <img src="./images/MyAccountSymbol.png" width="30" height="30" alt="Account Logo" />
+                </div>
+
+                <!-- Account Name -->
+                <div class="account">
+                    <h4>Welcome, {{ username }}!</h4>
+                </div>
+                
+                <p> Favourites Page </p>
+
+                <footer id="footer">
+                    <ul><b><i>SIT120 - Introduction to Responsive Web Applications</ul>
+                    <ul>Created by: Jesse Alan Hickman</i></b></ul>
+                </footer>
             </div>
         </div>
-
-        <footer id="footer">
-            <ul><b><i>SIT120 - Introduction to Responsive Web Applications</ul>
-            <ul>Created by: Jesse Alan Hickman</i></b></ul>
-        </footer>
-
+        
         <script>
-
-            let user = new Vue({
-            el: '#user',
+            let app = new Vue({
+            el: '#app',
                 data: {     
-                    username: '', 
+                    showLogin: true,
+                    showHome: false,
+                    showLibrary: false,
+                    showFavourites: false,
+                    username:'',
+                    password:'',
+                    usernameNew:'',
+                    passwordNew:'',
+                    passwordCheck: '',
+                    oldUser: true,
+                },
+                methods: {
+                    setHomeTrue: function() {
+                        return this.showHome = true;
+                    },
+                    setHomeFalse: function() {
+                        return this.showHome = false;
+                    },
+                    setLoginTrue: function() {
+                        return this.showLogin = true;
+                    },
+                    setLoginFalse: function() {
+                        return this.showLogin = false;
+                    },
+                    setLibraryTrue: function() {
+                        return this.showLibrary = true;
+                    },
+                    setLibraryFalse: function() {
+                        return this.showLibrary = false;
+                    },
+                    setFavouritesTrue: function() {
+                        return this.showFavourites = true;
+                    },
+                    setFavouritesFalse: function() {
+                        return this.showFavourites = false;
+                    },
+                    checkNewCredentials: function (passwordNew, passwordCheck) {
+                        if (passwordNew == passwordCheck) {
+                            if (this.passwordNew != '' && this.usernameNew != '') {
+                            this.username = this.usernameNew;
+                            this.showLogin =  false;
+                            this.showLogin = true;
+                            return alert("Account successfully created!"); 
+                            }
+                            else {
+                                return alert ("Fill in all fields to create account.")
+                            }
+                        }
+                        else {
+                            return alert("Passwords entered do not match.");
+                        }
+                    },
+                    checkCredentials: function() {
+                        if (this.username == this.usernameNew && this.password == this.passwordNew //&& this.password != '' && this.username != ''
+                        ) {
+                            this.showLogin = false;
+                            this.showHome = true;
+                            return null;
+                        }
+                        else {
+                            return alert("Incorrect Username or Password");
+                        }
+                    },
+                },
+                components: {
+        
                 },
             });
         </script>
