@@ -197,13 +197,34 @@
 
                 <!-- Filter Button -->
                 <div class="filter">
-                    <button class="accessButton" style="background-color: rgb(156, 212, 156);" v-show="filterOn" @click="openFilter();">Filter Options</button>
+                    <button class="accessButton" style="background-color: rgb(156, 212, 156);" v-show="filterOn" @click="openFilter();">Filter</button>
 
-                    <h1 v-show="filterOn == false"> Filter Settings </h1>
-                    <button class="accessButton" style="background-color: rgb(156, 212, 156);" v-show="filterOn == false" @click="closeFilter();">Boy Names Only</button><br>
-                    <button class="accessButton" style="background-color: rgb(156, 212, 156);" v-show="filterOn == false" @click="closeFilter();"> Girl Names Only</button>
+                    <div v-show="filterOn == false">
+                        <h1><br> Filter Options</h1> <br>
 
-                    
+                        <label>Gender:</label>
+                        <input type="checkbox" @click="" id="boyCheck" v-model="checkedItems" />
+                        <label style="padding-right: 20px;">Boy</label>
+                        
+                        <input type="checkbox" @click="" id="girlCheck" v-model="checkedItems"/>
+                        <label>Girl</label>
+                        <br><br>
+
+                        <label>Starts with:</label>
+                        <input type="text"/>
+                        <br><br>
+
+                        <label>Contains:</label>
+                        <input type="text"/>
+                        <br><br>
+
+                        <label>Ends in:</label>
+                        <input type="text"/>
+                        <br><br>
+
+                        <br><br><br>
+                        <button class="accessButton" style="background-color: rgb(156, 212, 156);" v-show="filterOn == false" @click="closeFilter();">Save Filter</button>
+                    </div>
                 </div>  
                 
                 <!-- List of Boy Names -->
@@ -379,29 +400,37 @@
                     },
                     setHomeFalse: function() {
                         window.scrollTo(0, 0);
+                        this.filterOn = true;
                         return this.showHome = false;
+                        
                     },
                     setLoginTrue: function() {
                         window.scrollTo(0, 0);
+                        this.filterOn = true;
                         return this.showLogin = true;
                     },
                     setLoginFalse: function() {
                         window.scrollTo(0, 0);
+                        this.filterOn = true;
                         return this.showLogin = false;
                     },
                     setLibraryTrue: function() {
                         window.scrollTo(0, 0);
+                        this.filterOn = true;
                         return this.showLibrary = true;
                     },
                     setLibraryFalse: function() {
                         window.scrollTo(0, 0);
+                        this.filterOn = true;
                         return this.showLibrary = false;
                     },
                     setFavouritesTrue: function() {
                         window.scrollTo(0, 0);
+                        this.filterOn = true;
                         return this.showFavourites = true;
                     },
                     setFavouritesFalse: function() {
+                        this.filterOn = true;
                         window.scrollTo(0, 0);
                         return this.showFavourites = false;
                     },
