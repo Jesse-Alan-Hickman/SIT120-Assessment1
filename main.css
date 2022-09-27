@@ -7,18 +7,23 @@
     block-size: 130px;
 }
 
+/* Vertical Scroll */
+html {
+    overflow-y: scroll;
+} 
+
 .accountLogo {
-        background-color: #ffebd2;
-        display: flex;
-        color: #2a2a2a;
-        float: left;
-        text-align: right;
-        block-size: 130px;
-        align-items: center;
-        justify-content:right;
-        width: 5%;
-        font-size: 30px;
-        border-left:2px solid #ffffff;
+    background-color: #ffebd2;
+    display: flex;
+    color: #2a2a2a;
+    float: left;
+    text-align: right;
+    block-size: 130px;
+    align-items: center;
+    justify-content:right;
+    width: 5%;
+    font-size: 30px;
+    border-left:2px solid #ffffff;
 }
 
 .account {
@@ -128,6 +133,13 @@
 }
 
 /* Navigation */
+.navBar {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    top: 0;
+}
+
 .navButton {
     color: #646464;
     height: 40px;
@@ -146,7 +158,7 @@
     background-color: #fcead4;
 }
 
-#navBar {
+#navButtons {
     float: left;
     align-items: center;
     justify-content: left;
@@ -160,50 +172,67 @@
 }
 
 /* Naming symbols */
-#nameSymbols {
+.addSymbols {
     float: left;
     width: 30px;
     text-align: left;
 }
 
+.symbols {
+    float: left;
+    width: 30px;
+    text-align: left;
+    padding-left: 5px;
+}
+
+.babyNames {
+    font-size: 50px;
+    color: black;
+    font-family:Arial, Helvetica, sans-serif;
+    padding: 10px;
+    text-align: center;
+}
+
 /* Grid */
 .grid-container1 {
-    width: 40%;
+    width: 50%;
     display: grid;
     float: left;
-    grid-template-columns:145px 80px 100px;
+    grid-template-columns: 30%, 70%;
     grid-template-rows: 85px 85px 85px 85px 85px 85px;
     gap: 10px;
-    background-color: #edfffe;
+    background-color: #f4fffe; 
     padding: 10px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     opacity: 0.7;
+    text-align: center;
   }
 
   .grid-container2 {
-    width: 40%;
+    width: 50%;
     display: grid;
     float: right;
-    grid-template-columns:145px 80px 100px;
+    grid-template-columns: 30%, 70%;
     grid-template-rows: 85px 85px 85px 85px 85px 85px;
     gap: 10px;
-    background-color: #fff2fb;
+    background-color: #fef3ff;
     padding: 10px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     opacity: 0.7;
+    text-align: center;
   }
   
   .grid-container1 > div {
-    background-color: #edfffe;
+    background-color: #f4fffe;
     text-align: center;
     padding: 20px 0;
     font-size: 40px;
   }
   
   .grid-container2 > div {
-    background-color: #fff2fb;
+    background-color: #fef4ff;
     text-align: center;
     padding: 20px 0;
     font-size: 40px;
@@ -237,7 +266,7 @@
 
 /* Girls Over 1300px */
 @media screen and (min-width: 1300px) {
-    #girls {
+    #girlsName {
     float: left;
     width: 30%;
     color: #2a2a2a;

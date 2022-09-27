@@ -11,23 +11,6 @@ html, body {
     min-height: 100%;
 }
 
-/* Navigation Button Links */
-a:link {
-    text-decoration: none;
-}
-
-a:visited {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: none;
-}
-
-a:active {
-    text-decoration: none;
-}
-
 #main {
     overflow: auto;
     padding-bottom: 100px;
@@ -45,30 +28,42 @@ a:active {
     text-align: center;
 }
 
+.filter {
+    text-align: center;
+    width: 100%;
+    float: left;
+    background-color: white;
+}
+
 .inputElement {
     width: 400px;
     height: 40px;
     font-size: 20px;
     border-radius: 0.8em;
-    background-color: rgb(242, 242, 242);
+    background-color: rgb(246, 243, 243);
     border: solid black;
     text-indent: 20px;
+    
 }
 
 .accessButton {
     font-size: 20px;
-    background-color: white;
-    border: none;
+    background-color: rgb(53, 79, 117);
+    border: solid;
+    border-radius: 0.3em;
     padding: 10px;
+    color: white;
 }
 
 .accessButton:hover {
-    background-color: lightgrey;
+    background-color: rgb(69, 105, 159);
 }
 
 #footer {
     background-color: #ffebd2;
-    position: bottom;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
     height: 80px;
     margin-top: -80px;
     clear: both;
