@@ -29,45 +29,40 @@
         <!-- Entire app - encompassing each webpage -->
         <div id="app">
 
-            <!-- Login/Signup Page *************************************************************************************************** -->
+            <!-- Login/Signup Page ****************************************************************************************** -->
             <div id="login" v-show="showLogin">
 
-                <!-- Logo Insert -->
-                <div id="loginLogo">
-                    <img src="./images/baby_logo_white.png" width="800" height="270" alt="My Baby's Name - Logo" />
-                </div>
+                <!-- Front Page Logo Insert -->
+                <login-logo></login-logo>
 
-                <!-- Account Name -->
-                <div id="signIn">
-                    <div id="credentials">
-                        <div id="signIn" v-show="oldUser">
-                            <h2>Welcome Back!</h2>
-                            <br>
-                            <input type="text" v-model="username" class="inputElement" placeholder="Enter your Username">
-                            <br><br>
-                            <input type="password" v-model="password" class="inputElement" placeholder="Enter your Password">
-                            <br><br>
-                            <button class="accessButton" @click="checkCredentials();">Log In</button>
-                            <br><br>
-                            <h2>OR</h2>
-                            <br>
-                            <button class="accessButton" @click="oldUser = !oldUser" >Create an Account</button>
-                        </div>
+                <!-- Credentials for signing into website  -->
+                <div id="credentials">
 
-                        <div id="signUp" v-show="oldUser==false">
-                            <h2>Create a new Account</h2>
-                            <br>
-                            <input type="text" v-model="usernameNew" class="inputElement" placeholder="Enter new Username">
-                            <br><br><br>
-                            <input type="password" v-model="passwordNew" class="inputElement" placeholder="Enter new Password">
-                            <br><br>
-                            <input type="password" v-model="passwordCheck" class="inputElement" placeholder="Confirm new Password">
-                            <br><br>
-                            <button class="accessButton" @click="checkNewCredentials(passwordNew, passwordCheck);">Create</button>
-                            <br><br>
-                            <button class="accessButton" @click="oldUser = !oldUser" >Return to Log in</button>
-                            <div id="app"></div>
-                        </div>
+                    <!-- Sign in -->
+                    <div id="signIn" v-show="oldUser">
+                        <h2>{{ welcomeMessage }}</h2><br>
+
+                        <input type="text" v-model="username" class="inputElement" placeholder="Enter your Username..."><br><br>
+                        <input type="password" v-model="password" class="inputElement" placeholder="Enter your Password..."><br><br>
+                        <button class="accessButton" @click="checkCredentials();">Log In</button><br><br>
+                        <h2>OR</h2><br>
+                        <button class="accessButton" @click="oldUser = !oldUser" >Create an Account</button>
+                    </div>
+
+                    <!-- Create new account -->
+                    <div id="signUp" v-show="oldUser==false">
+                        <h2>Create a new Account</h2>
+                        <br>
+                        <input type="text" v-model="usernameNew" class="inputElement" placeholder="Enter new Username...">
+                        <br><br><br>
+                        <input type="password" v-model="passwordNew" class="inputElement" placeholder="Enter new Password...">
+                        <br><br>
+                        <input type="password" v-model="passwordCheck" class="inputElement" placeholder="Confirm new Password...">
+                        <br><br>
+                        <button class="accessButton" @click="checkNewCredentials(passwordNew, passwordCheck);">Create</button>
+                        <br><br>
+                        <button class="accessButton" @click="oldUser = !oldUser" >Return to Log in</button>
+                        <div id="app"></div>
                     </div>
                 </div>
             </div>
@@ -75,10 +70,8 @@
             <!-- Home Page *************************************************************************************************** -->
             <div id="home" v-show="showHome">
                 <div class="navBar">
-                    <!-- Logo Insert -->
-                    <div class="logo">
-                        <img src="./images/baby_logo_nav.png" width="350" height="125" alt="Baby Logo 2"/>
-                    </div>
+                    <!-- Webpage Logo Insert -->
+                    <app-logo></app-logo>
 
                     <!-- Navigation Bar -->
                     <nav id="navButtons">
@@ -88,32 +81,24 @@
                         <ul class="navButton" @click="setLoginTrue(); setHomeFalse();">Signout</ul>
                     </nav>
 
-                    <!-- Nav Bar Logo-->
-                    <div class="accountLogo">
-                        <img src="./images/my_account_symbol.png" width="30" height="30" alt="Account Logo" />
-                    </div>
+                    <!-- My Account Logo-->
+                    <account-logo></account-logo>
 
                     <!-- Account Name -->
                     <div class="account">
                         <h4>Welcome, {{ username }}!</h4>
                     </div>
-
-                    <!-- Filter Button -->
-                    <div class="filter">
-                        <button class="accessButton" style="background-color: rgb(156, 212, 156);" v-show="filterOn" @click="openFilter();">Filter</button>
-                        <button class="accessButton" style="background-color: rgb(156, 212, 156);" v-show="filterOn == false" @click="closeFilter();">Inside Filter</button>
-                    </div>
                 </div>
 
                 <!-- List of Boy Names -->
-                <div id="boys" v-show="showBoyNames" style="margin-top: 170px;"> 
+                <div id="boys" v-show="showBoyNames" style="margin-top: 110px;"> 
                     <div class="grid-container1" style="padding-bottom: 80px;">
                         <ul class="name" v-for="name in boyNames">
-
+                            
                             <div class="symbols">
                                 <img v-if="name.favourited == true" @click="name.favourited = !name.favourited" src="./images/heart_symbol.png" width="60" height="60" alt="Symbol">
                                 <img v-else @click="name.favourited = !name.favourited" src="./images/add_symbol.png" width="60" height="60" alt="Symbol">
-                            </div>  
+                            </div> 
 
                             <div class="babyNames">
                                 {{ name.name }}
@@ -142,400 +127,456 @@
 
             <!-- Library Page *************************************************************************************************** -->
             <div id="library" v-show="showLibrary">
+                <div class=navBar>
 
-                <!-- Logo Insert -->
-                <div class="logo">
-                    <img src="./images/baby_logo_nav.png" width="350" height="125" alt="Baby Logo 2"/>
+                    <!-- Webpage Logo Insert -->
+                    <app-logo></app-logo>
+
+                    <!-- Navigation Bar -->
+                    <nav id="navButtons">
+                        <ul class="navButton" @click="setHomeTrue(); setLibraryFalse();" >Home</ul>
+                        <ul class="navButton" style="color: black;">Library</ul>
+                        <ul class="navButton" @click="setFavouritesTrue(); setLibraryFalse();">Favourites</ul>
+                        <ul class="navButton" @click="setLoginTrue(); setLibraryFalse();">Signout</ul>
+                    </nav>
+
+                    <!-- My Account Logo-->
+                    <account-logo></account-logo>
+
+                    <!-- Account Name -->
+                    <div class="account">
+                        <h4>Welcome, {{ username }}!</h4>
+                    </div>
                 </div>
 
-                <!-- Navigation Bar -->
-                <nav id="navButtons">
-                    <ul class="navButton" @click="setHomeTrue(); setLibraryFalse();" >Home</ul>
-                    <ul class="navButton" style="color: black;">Library</ul>
-                    <ul class="navButton" @click="setFavouritesTrue(); setLibraryFalse();">Favourites</ul>
-                    <ul class="navButton" @click="setLoginTrue(); setLibraryFalse();">Signout</ul>
-                </nav>
-
-                <!-- Nav Bar Logo-->
-                <div class="accountLogo">
-                    <img src="./images/my_account_symbol.png" width="30" height="30" alt="Account Logo" />
-                </div>
-
-                <!-- Account Name -->
-                <div class="account">
-                    <h4>Welcome, {{ username }}!</h4>
-                </div>
-
-                <p>Library Page</p>
+                <div style="margin-top: 150px;">Library Page</div>
+            
             </div>
 
             <!-- Favourites Page *************************************************************************************************** -->
             <div id="favourites" v-show="showFavourites">
 
-                <!-- Logo Insert -->
-                <div class="logo">
-                    <img src="./images/baby_logo_nav.png" width="350" height="125" alt="Baby Logo 2"/>
-                </div>
+                <div class="navBar">
 
-                <!-- Navigation Bar -->
-                <nav id="navButtons">
-                    <ul class="navButton" @click="setHomeTrue(); setFavouritesFalse();">Home</ul>
-                    <ul class="navButton" @click="setLibraryTrue(); setFavouritesFalse();">Library</ul>
-                    <ul class="navButton" style="color: black;">Favourites</ul>
-                    <ul class="navButton" @click="setLoginTrue(); setFavouritesFalse();">Signout</ul>
-                </nav>
+                    <!-- Webpage Logo Insert -->
+                    <app-logo></app-logo>
 
-                <!-- Nav Bar Logo-->
-                <div class="accountLogo">
-                    <img src="./images/my_account_symbol.png" width="30" height="30" alt="Account Logo" />
-                </div>
+                    <!-- Navigation Bar -->
+                    <nav id="navButtons">
+                        <ul class="navButton" @click="setHomeTrue(); setFavouritesFalse();">Home</ul>
+                        <ul class="navButton" @click="setLibraryTrue(); setFavouritesFalse();">Library</ul>
+                        <ul class="navButton" style="color: black;">Favourites</ul>
+                        <ul class="navButton" @click="setLoginTrue(); setFavouritesFalse();">Signout</ul>
+                    </nav>
 
-                <!-- Account Name -->
-                <div class="account">
-                    <h4>Welcome, {{ username }}!</h4>
-                </div>
+                    <!-- My Account Logo-->
+                    <account-logo></account-logo>
 
-                <!-- Filter Button -->
-                <div class="filter">
-                    <button class="accessButton" style="background-color: rgb(156, 212, 156);" v-show="filterOn" @click="openFilter();">Filter</button>
+                    <!-- Account Name -->
+                    <div class="account">
+                        <h4>Welcome, {{ username }}!</h4>
+                    </div>
 
-                    <div v-show="filterOn == false">
-                        <h1><br> Filter Options</h1> <br>
-
-                        <label>Gender:</label>
-                        <input type="checkbox" @click="" id="boyCheck" v-model="checkedItems" />
-                        <label style="padding-right: 20px;">Boy</label>
+                    <!-- Filter Options -->
+                    <div class="filter">
                         
-                        <input type="checkbox" @click="" id="girlCheck" v-model="checkedItems"/>
-                        <label>Girl</label>
-                        <br><br>
+                        <button class="accessButton" style="background-color: rgb(156, 212, 156); width: 10%;" v-show="filterOn" @click="openFilter();">Name Options</button>
 
-                        <label>Starts with:</label>
-                        <input type="text"/>
-                        <br><br>
+                        <Transition class="filter-options">
+                            <div v-show="filterOn == false">
+                                <button class="accessButton" style="background-color: rgb(156, 212, 156); width: 10%;" v-show="filterOn == false" @click="fullNameEdit(); closeFilter();">Save & Close</button>
 
-                        <label>Contains:</label>
-                        <input type="text"/>
-                        <br><br>
+                                <h1><br> Naming Options</h1> <br>
 
-                        <label>Ends in:</label>
-                        <input type="text"/>
-                        <br><br>
+                                <h4>Type a first name:</h4><br>
+                                
+                                <input class="inputElement" type="text" placeholder="Enter First Name..." style="width: 15%;" v-model.trim="firstNameChange"/>
+                                <br><br><br>
 
-                        <br><br><br>
-                        <button class="accessButton" style="background-color: rgb(156, 212, 156);" v-show="filterOn == false" @click="closeFilter();">Save Filter</button>
+                                <h4>Complete the full name:</h4><br>
+                                <input class="inputElement" type="text" placeholder="Enter Middle Name..." style="width: 15%;" v-model.trim="middleNameChange" />
+                                <br><br>
+                                
+                                <input class="inputElement" type="text" placeholder="Enter Last Name..." style="width: 15%;" v-model.trim="lastNameChange" />
+                                <br><br>
+                            </div>
+                        </Transition>
+                        
+                    </div> 
+
+                    <h1 v-show="filterOn == true" style="text-align: center; color: rgb(27, 109, 202); width: 50%; float: left; background-color: white;">Favourite Boy Names:</h1>
+                    <h1 v-show="filterOn == true" style="text-align: center; color: rgb(252, 165, 180); width: 50%; float: right; background-color: white;">Favourite Girl Names:</h1>
+                </div>
+                
+                <div style="margin-top: 220px;">
+                    <!-- List of Boy Names -->
+                    <div id="boys" v-show="showBoyNames" style="padding-bottom:250px; float: left; width: 50%;">
+                        <div>
+                            <ul class="name" v-for="name in boyNames">
+                                <div v-if="name.favourited">
+                                    <div>
+                                        {{ emptyCheckBoys() }}
+                                    </div>
+                                    <div class="babyNames">
+                                        <div class="symbols">
+                                            <img @click="name.favourited = !name.favourited" src="./images/red_cross.png" width="55" height="55" alt="Symbol" style="background-color: #f9ffff;">
+                                        </div>  
+                                        <div @click="firstName = name.name">
+                                            <p style="background-color: #f9ffff;"> {{ name.name }} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ul>
+                            <div class="emptyMessage" v-show="emptyMessageBoys">
+                                <br><br>
+                                <p style="font-size: 30px">You have no favourited boy names.</p>
+                            </div> 
+                        </div>
+                    </div>
+
+                    <!-- List of Girl Names -->
+                    <div id="girls" v-show="showGirlNames" style="padding-bottom:250px; float: left; width: 50%; ">
+                        <div>
+                            <ul class="name" v-for="name in girlNames">
+                                <div v-if="name.favourited">
+                                    <div>
+                                    {{ emptyCheckGirls() }}
+                                    </div>
+                                    <div class="babyNames"> 
+                                        <div class="symbols">
+                                            <img @click="name.favourited = !name.favourited" src="./images/red_cross.png" width="55" height="55" alt="Symbol" style="background-color: #fdf5fe;">
+                                        </div> 
+                                        <div @click="firstName = name.name">
+                                            <p style="background-color: #fdf5fe;">{{ name.name }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ul>
+                            <div class="emptyMessage" v-show="emptyMessageGirls">
+                                <br><br>
+                                <p style="font-size: 30px">You have no favourited girl names.</p>
+                            </div>
+                        </div> 
                     </div>
                 </div>  
                 
-                <!-- List of Boy Names -->
-                <div id="boys" v-show="showBoyNames"> 
-                    <div style="width: 50%; float: left; padding-bottom: 80px;">
-                        <h1 style="text-align: center; color: rgb(27, 109, 202);">Favourite Boy Names:</h1>
-                        <ul class="name" v-for="name in boyNames">
-                            <div v-if="name.favourited">
-                                <div class="babyNames">
-                                    {{ name.name }}
-                                </div>
-                            </div> 
-                        </ul>
+                <!-- Full Name Display -->
+                <div id = nameViewer>
+                    <div id="firstName">
+                        <p>{{firstName | capitalize }}</p>
                     </div>
-                </div>
 
-                <!-- List of Girl Names -->
-                <div id="girls" v-show="showGirlNames">
-                    <div style="width: 50%; float: right; padding-bottom: 80px;">
-                        <h1 style="text-align: center; color: rgb(252, 165, 180);">Favourite Girl Names:</h1>
-                        <ul class="name" v-for="name in girlNames">
-                            <div v-if="name.favourited">
-                                <div class="babyNames">
-                                    {{ name.name }}
-                                </div>
-                            </div> 
-                        </ul>
+                    <div id="middleName">
+                        <p>{{middleName | capitalize}}</p>
+                    </div>
+
+                    <div id="lastName">
+                        <p>{{lastName | capitalize}}</p>
                     </div>
                 </div>
             </div>
 
             <footer id="footer">
-                <ul><b><i>SIT120 - Introduction to Responsive Web Applications</ul>
-                <ul>Created by: Jesse Alan Hickman</i></b></ul>
+                <footer-info></footer-info>
             </footer>
         </div>
-        
-        <script>
-            let app = new Vue({
-            el: '#app',
-                data: {     
-                    showLogin: true,
-                    showHome: false,
-                    showLibrary: false,
-                    showFavourites: false,
-                    showBoyNames: false,
-                    showGirlNames: false,
-                    username:'',
-                    password:'',
-                    usernameNew:'',
-                    passwordNew:'',
-                    passwordCheck: '',
-                    oldUser: true,
-                    filterOn: false,
-                    reelOne: '',
-                    reelTwo: '',
-                    reelThree: '',
-                    reelFour:'',
-                    reelFive: '',
-                    boyNames: [
-                        {id: 1, name: 'Oliver', favourited: false},
-                        {id: 2, name: 'Asher', favourited: false},
-                        {id: 3, name: 'Theodore', favourited: false},
-                        {id: 4, name: 'Noah', favourited: false},
-                        {id: 5, name: 'Henry', favourited: false},
-                        {id: 6, name: 'Finn', favourited: false},
-                        {id: 7, name: 'Aiden', favourited: false},
-                        {id: 8, name: 'Alistair', favourited: false},
-                        {id: 9, name: 'Liam', favourited: false},
-                        {name: 'Jasper', favourited: false},
-                        {name: 'Declan', favourited: false},
-                        {name: 'Silas', favourited: false},
-                        {name: 'Sebastian', favourited: false},
-                        {name: 'Levi', favourited: false},
-                        {name: 'Leo', favourited: false},
-                        {name: 'Felix', favourited: false},
-                        {name: 'Everett', favourited: false},
-                        {name: 'Alexander', favourited: false},
-                        {name: 'Ethan', favourited: false},
-                        {name: 'Caleb', favourited: false},
-                        {name: 'Gabriel', favourited: false},
-                        {name: 'Atticus', favourited: false},
-                        {name: 'Owen', favourited: false},
-                        {name: 'Benjamin', favourited: false},
-                        {name: 'Grayson', favourited: false},
-                        {name: 'Jackson', favourited: false},
-                        {name: 'Elijah', favourited: false},
-                        {name: 'Lucas', favourited: false},
-                        {name: 'August', favourited: false},
-                        {name: 'Milo', favourited: false},
-                        {name: 'William', favourited: false}, 
-                        {name: 'Miles', favourited: false},
-                        {name: 'Evander', favourited: false},
-                        {name: 'Theo', favourited: false},
-                        {name: 'Hudson', favourited: false},
-                        {name: 'Emmett', favourited: false},
-                        {name: 'Arlo', favourited: false},
-                        {name: 'Archer', favourited: false},
-                        {name: 'Elias', favourited: false},
-                        {name: 'Ronan', favourited: false},
-                        {name: 'Isaac', favourited: false},
-                        {name: 'Wesley', favourited: false},
-                        {name: 'Micah', favourited: false},
-                        {name: 'Atlas', favourited: false},
-                        {name: 'Beau', favourited: false},
-                        {name: 'Luke', favourited: false},
-                        {name: 'Nathaniel', favourited: false},
-                        {name: 'Thomas', favourited: false},
-                        {name: 'Connor', favourited: false},
-                        {name: 'Landon', favourited: false},
-                    ],
-                    girlNames: [    
-                        {id: 1, name: 'Violet', favourited: false},
-                        {id: 2, name: 'Charlotte', favourited: false},
-                        {id: 3, name: 'Auora', favourited: false},
-                        {id: 4, name: 'Amelia', favourited: false},
-                        {id: 5, name: 'Hazel', favourited: false},
-                        {id: 6, name: 'Luna', favourited: false},
-                        {id: 7, name: 'Sophia', favourited: false},
-                        {id: 8, name: 'Ivy', favourited: false},
-                        {id: 9, name: 'Evelyn', favourited: false},
-                        {id: 10, name: 'Genevieve', favourited: false},
-                        {id: 11, name: 'Freya', favourited: false},
-                        {id: 12, name: 'Wren', favourited: false},
-                        {id: 13, name: 'Isla', favourited: false},
-                        {id: 14, name: 'Ava', favourited: false},
-                        {id: 15, name: 'Iris', favourited: false},
-                        {id: 16, name: 'Lily', favourited: false},
-                        {id: 17, name: 'Olivia', favourited: false},
-                        {id: 18, name: 'Adelaide', favourited: false},
-                        {id: 19, name: 'Aria', favourited: false},
-                        {id: 20, name: 'Maeve', favourited: false},
-                        {id: 21, name: 'Eleanor', favourited: false},
-                        {id: 22, name: 'Scarlett', favourited: false},
-                        {id: 23, name: 'Adeline', favourited: false},
-                        {id: 24, name: 'Grace', favourited: false},
-                        {id: 25, name: 'Ophelia', favourited: false},
-                        {id: 26, name: 'Ella', favourited: false},
-                        {id: 27, name: 'Nora', favourited: false},
-                        {id: 28, name: 'Alice', favourited: false},
-                        {id: 29, name: 'Evangeline', favourited: false},
-                        {id: 30, name: 'Naomi', favourited: false},
-                        {id: 31, name: 'Audrey', favourited: false},
-                        {id: 32, name: 'Elizabeth', favourited: false},
-                        {id: 33, name: 'Eloise', favourited: false},
-                        {id: 34, name: 'Lydia', favourited: false},
-                        {id: 35, name: 'Chloe', favourited: false},
-                        {id: 36, name: 'Cora', favourited: false},
-                        {id: 37, name: 'Clara', favourited: false},
-                        {id: 38, name: 'Rose', favourited: false},
-                        {id: 39, name: 'Celeste', favourited: false},
-                        {id: 40, name: 'Juniper', favourited: false},
-                        {id: 41, name: 'Penelope', favourited: false},
-                        {id: 42, name: 'Anastasia', favourited: false},
-                        {id: 43, name: 'Astrid', favourited: false},
-                        {id: 44, name: 'Emma', favourited: false},
-                        {id: 45, name: 'Rosalie', favourited: false},
-                        {id: 46, name: 'Athena', favourited: false},
-                        {id: 47, name: 'Abigail', favourited: false},
-                        {id: 48, name: 'Stella', favourited: false},
-                        {id: 49, name: 'Imogen', favourited: false},
-                        {id: 50, name: 'Phoebe', favourited: false},
-                    ],
-                },
-                methods: {
-                    setHomeTrue: function() {
-                        this.showBoyNames = true;
-                        this.showGirlNames = true;
-                        this.showHome = true;
-                        this.filterOn = true;
-                        window.scrollTo(0, 0);
-                        return null;
-                    },
-                    setHomeFalse: function() {
-                        window.scrollTo(0, 0);
-                        this.filterOn = true;
-                        return this.showHome = false;
-                        
-                    },
-                    setLoginTrue: function() {
-                        window.scrollTo(0, 0);
-                        this.filterOn = true;
-                        return this.showLogin = true;
-                    },
-                    setLoginFalse: function() {
-                        window.scrollTo(0, 0);
-                        this.filterOn = true;
-                        return this.showLogin = false;
-                    },
-                    setLibraryTrue: function() {
-                        window.scrollTo(0, 0);
-                        this.filterOn = true;
-                        return this.showLibrary = true;
-                    },
-                    setLibraryFalse: function() {
-                        window.scrollTo(0, 0);
-                        this.filterOn = true;
-                        return this.showLibrary = false;
-                    },
-                    setFavouritesTrue: function() {
-                        window.scrollTo(0, 0);
-                        this.filterOn = true;
-                        return this.showFavourites = true;
-                    },
-                    setFavouritesFalse: function() {
-                        this.filterOn = true;
-                        window.scrollTo(0, 0);
-                        return this.showFavourites = false;
-                    },
-                    checkNewCredentials: function (passwordNew, passwordCheck) {
-                        if (passwordNew == passwordCheck) {
-                            if (this.passwordNew != '' && this.usernameNew != '') {
-                            this.username = this.usernameNew;
-                            this.showLogin =  false;
-                            this.showLogin = true;
-                            return alert("Account successfully created!"); 
-                            }
-                            else {
-                                return alert("Fill in all fields to create account.");
-                            }
-                        }
-                        else {
-                            return alert("Passwords entered do not match.");
-                        }
-                    },
-                    checkCredentials: function() {
-                        if (this.username == this.usernameNew && this.password == this.passwordNew //&& this.password != '' && this.username != ''
-                        ) {
-                            this.showLogin = false;
-                            this.showHome = true;
-                            this.filterOn = true;
-                            this.showBoyNames = true;
-                            this.showGirlNames = true;
-                            return null;
-                        }
-                        else {
-                            return alert("Incorrect Username or Password");
-                        }
-                    },
-                    openFilter: function () {
-                        this.filterOn = !this.filterOn;
-                        this.showBoyNames = false;
-                        this.showGirlNames = false;
-                        return null;
-                    },
-                    closeFilter: function () {
-                        this.filterOn = !this.filterOn;
-                        this.showBoyNames = true;
-                        this.showGirlNames = true;
-                        return null;
-                    },
-                    changeSymbol: function (id) {
-
-                        this.showBoyNames = false;
-                        this.showGirlNames = false;
-                        
-                
-                        return null;
-                    },
-
-                    changeS: function() {
-                        if (this.name.favourited == true) {
-                            
-                            return null;
-                
-                        }
-                        else {
-                            
-                            return null;
-                        }
-                    },
-
-
-                    changeStatus: function () {
-                        return;
-                    },
-                    nameRendering: function (name) {
-                        if (this.name.favourited == true){
-                            return 
-                        }
-                        else {
-                            
-                        }
-                    },
-                    pushName: function (newName) {
-                        if (this.newName != ''){
-                            this.boyNames.push(this.newName, false)
-                        }
-                    },
-                    getSymbol: function (name) {
-                        if (this.name.favourited == true) {
-                            return this.image = './images/heart_symbol.png';
-                
-                        }
-                        else {
-                            return this.image = './images/add_symbol.png';
-                        }
-                    },  
-                    removeFavourite: function (name) {
-                        //this.favourites.splice(index, 1)   
-                        this.name.favourited = !this.name.favourited;   
-                        return null;                                    
-                    },
-                    addFavourite: function () {
-                    }
-                
-                },
-                components: {
-        
-                },
-            });
-        </script>
     </body>
 </html>
+        
+<!-- Component Import -->
+<script src="./components/login_logo.js"></script>
+<script src="./components/app_logo.js"></script>
+<script src="./components/account_logo.js"></script>
+<script src="./components/footer.js"></script>
+
+<script>
+Vue.filter('capitalize', function (value) {
+    return value.toUpperCase()
+  })
+</script> 
+
+<!-- Handling Edge Cases: x-template (footer) -->
+<script type="text/x-template" id="footer-template">
+    <div>
+        <ul><b><i>SIT120 - Introduction to Responsive Web Applications</i></b></ul>
+            <ul><b><i>Created by: Jesse Alan Hickman</i></b></ul>
+    </div>
+</script>
+
+<script>
+    let app = new Vue({
+    el: '#app',
+        data: {    
+            welcomeMessage: 'Welcome!',
+
+            showLogin: true,
+            showHome: false,
+            showLibrary: false,
+            showFavourites: false,
+            showBoyNames: false,
+            showGirlNames: false,
+
+            username:'',
+            password:'',
+            usernameNew:'',
+            passwordNew:'',
+            passwordCheck: '',
+
+            oldUser: true,
+            filterOn: false,
+
+            firstNameChange: '',
+            middleNameChange: '',
+            lastNameChange: '',
+
+            emptyMessageBoys: true,
+            emptyMessageGirls: true,
+
+            girlNameAdd: '',
+            boyNameAdd: '',
+            firstName: 'First',
+            middleName: 'Middle',
+            lastName: 'Last',
+            boyNames: [
+                {name: 'Oliver', favourited: false},
+                {name: 'Asher', favourited: false},
+                {name: 'Theodore', favourited: false},
+                {name: 'Noah', favourited: false},
+                {name: 'Henry', favourited: false},
+                {name: 'Finn', favourited: false},
+                {name: 'Aiden', favourited: false},
+                {name: 'Alistair', favourited: false},
+                {name: 'Liam', favourited: false},
+                {name: 'Jasper', favourited: false},
+                {name: 'Declan', favourited: false},
+                {name: 'Silas', favourited: false},
+                {name: 'Sebastian', favourited: false},
+                {name: 'Levi', favourited: false},
+                {name: 'Leo', favourited: false},
+                {name: 'Felix', favourited: false},
+                {name: 'Everett', favourited: false},
+                {name: 'Alexander', favourited: false},
+                {name: 'Ethan', favourited: false},
+                {name: 'Caleb', favourited: false},
+                {name: 'Gabriel', favourited: false},
+                {name: 'Atticus', favourited: false},
+                {name: 'Owen', favourited: false},
+                {name: 'Benjamin', favourited: false},
+                {name: 'Grayson', favourited: false},
+                {name: 'Jackson', favourited: false},
+                {name: 'Elijah', favourited: false},
+                {name: 'Lucas', favourited: false},
+                {name: 'August', favourited: false},
+                {name: 'Milo', favourited: false},
+                {name: 'William', favourited: false}, 
+                {name: 'Miles', favourited: false},
+                {name: 'Evander', favourited: false},
+                {name: 'Theo', favourited: false},
+                {name: 'Hudson', favourited: false},
+                {name: 'Emmett', favourited: false},
+                {name: 'Arlo', favourited: false},
+                {name: 'Archer', favourited: false},
+                {name: 'Elias', favourited: false},
+                {name: 'Ronan', favourited: false},
+                {name: 'Isaac', favourited: false},
+                {name: 'Wesley', favourited: false},
+                {name: 'Micah', favourited: false},
+                {name: 'Atlas', favourited: false},
+                {name: 'Beau', favourited: false},
+                {name: 'Luke', favourited: false},
+                {name: 'Nathaniel', favourited: false},
+                {name: 'Thomas', favourited: false},
+                {name: 'Connor', favourited: false},
+                {name: 'Landon', favourited: false},
+            ],
+            girlNames: [    
+                {name: 'Violet', favourited: false},
+                {name: 'Charlotte', favourited: false},
+                {name: 'Auora', favourited: false},
+                {name: 'Amelia', favourited: false},
+                {name: 'Hazel', favourited: false},
+                {name: 'Luna', favourited: false},
+                {name: 'Sophia', favourited: false},
+                {name: 'Ivy', favourited: false},
+                {name: 'Evelyn', favourited: false},
+                {name: 'Genevieve', favourited: false},
+                {name: 'Freya', favourited: false},
+                {name: 'Wren', favourited: false},
+                {name: 'Isla', favourited: false},
+                {name: 'Ava', favourited: false},
+                {name: 'Iris', favourited: false},
+                {name: 'Lily', favourited: false},
+                {name: 'Olivia', favourited: false},
+                {name: 'Adelaide', favourited: false},
+                {name: 'Aria', favourited: false},
+                {name: 'Maeve', favourited: false},
+                {name: 'Eleanor', favourited: false},
+                {name: 'Scarlett', favourited: false},
+                {name: 'Adeline', favourited: false},
+                {name: 'Grace', favourited: false},
+                {name: 'Ophelia', favourited: false},
+                {name: 'Ella', favourited: false},
+                {name: 'Nora', favourited: false},
+                {name: 'Alice', favourited: false},
+                {name: 'Evangeline', favourited: false},
+                {name: 'Naomi', favourited: false},
+                {name: 'Audrey', favourited: false},
+                {name: 'Elizabeth', favourited: false},
+                {name: 'Eloise', favourited: false},
+                {name: 'Lydia', favourited: false},
+                {name: 'Chloe', favourited: false},
+                {name: 'Cora', favourited: false},
+                {name: 'Clara', favourited: false},
+                {name: 'Rose', favourited: false},
+                {name: 'Celeste', favourited: false},
+                {name: 'Juniper', favourited: false},
+                {name: 'Penelope', favourited: false},
+                {name: 'Anastasia', favourited: false},
+                {name: 'Astrid', favourited: false},
+                {name: 'Emma', favourited: false},
+                {name: 'Rosalie', favourited: false},
+                {name: 'Athena', favourited: false},
+                {name: 'Abigail', favourited: false},
+                {name: 'Stella', favourited: false},
+                {name: 'Imogen', favourited: false},
+                {name: 'Phoebe', favourited: false},
+            ],
+        },
+        methods: {
+            setHomeTrue: function() {
+                this.showBoyNames = true;
+                this.showGirlNames = true;
+                this.showHome = true;
+                this.filterOn = true;
+                window.scrollTo(0, 0);
+                return null;
+            },
+            setHomeFalse: function() {
+                window.scrollTo(0, 0);
+                this.filterOn = true;
+                return this.showHome = false;
+                
+            },
+            setLoginTrue: function() {
+                window.scrollTo(0, 0);
+                this.filterOn = true;
+                return this.showLogin = true;
+            },
+            setLoginFalse: function() {
+                window.scrollTo(0, 0);
+                this.filterOn = true;
+                return this.showLogin = false;
+            },
+            setLibraryTrue: function() {
+                window.scrollTo(0, 0);
+                this.filterOn = true;
+                return this.showLibrary = true;
+            },
+            setLibraryFalse: function() {
+                window.scrollTo(0, 0);
+                this.filterOn = true;
+                return this.showLibrary = false;
+            },
+            setFavouritesTrue: function() {
+                window.scrollTo(0, 0);
+                this.filterOn = true;
+                this.emptyMessageGirls = true;
+                this.emptyMessageBoys = true;
+                return this.showFavourites = true;
+            },
+            setFavouritesFalse: function() {
+                this.filterOn = true;
+                window.scrollTo(0, 0);
+                return this.showFavourites = false;
+            },
+            checkNewCredentials: function (passwordNew, passwordCheck) {
+                if (passwordNew == passwordCheck) {
+                    if (this.passwordNew != '' && this.usernameNew != '') {
+                    this.username = this.usernameNew;
+                    this.showLogin =  false;
+                    this.showLogin = true;
+                    return alert("Account successfully created!"); 
+                    }
+                    else {
+                        return alert("Fill in all fields to create account.");
+                    }
+                }
+                else {
+                    return alert("Passwords entered do not match.");
+                }
+            },
+            checkCredentials: function() {
+                if (this.username == this.usernameNew && this.password == this.passwordNew //&& this.password != '' && this.username != ''
+                ) {
+                    this.showLogin = false;
+                    this.showHome = true;
+                    this.filterOn = true;
+                    this.showBoyNames = true;
+                    this.showGirlNames = true;
+                }
+                else {
+                    return alert("Incorrect Username or Password");
+                }
+            },
+            openFilter: function () {
+                this.filterOn = !this.filterOn;
+                return null;
+            },   
+            closeFilter: function () {
+                this.filterOn = !this.filterOn;
+                return null;
+            },
+            fullNameEdit: function () {
+                if (this.middleNameChange != '') {
+                    this.middleName = this.middleNameChange;
+                    this.middleNameChange = '';
+                }
+
+                if (this.lastNameChange != '') {
+                    this.lastName = this.lastNameChange;
+                    this.lastNameChange = '';
+                }
+
+                if (this.firstNameChange != '') {
+                    this.firstName = this.firstNameChange;
+                    this.firstNameChange = '';
+                }
+                return;
+            },
+            emptyCheckBoys: function () {
+                this.emptyMessageBoys = false;
+                return;
+            },
+            emptyCheckGirls: function () {
+                this.emptyMessageGirls = false;
+                return;
+            },
+            // filterContains(element) {
+            //     if (this.name.includes(element) == true) {
+            //         return true;
+            //     }
+            //     else {
+            //         return false;
+            //     }
+            // },
+            // filterEndsIn(element) {
+            //     if (this.name.startsWith(element) == true) {
+            //         return true;
+            //     } 
+            //     else {
+            //         return false;
+            //     }
+            // },
+            // filterStartWith() {
+            //     if (this.name.endsIn(element) == true) {
+            //         return true;
+            //     } 
+            //     else {
+            //         return false;
+            //     }
+            // },
+        },
+        components: {
+        },
+    });
+</script>

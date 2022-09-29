@@ -201,7 +201,7 @@ html {
     grid-template-columns: 30%, 70%;
     grid-template-rows: 85px 85px 85px 85px 85px 85px;
     gap: 10px;
-    background-color: #f4fffe; 
+    background-color: #f9ffff; 
     padding: 10px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -216,7 +216,7 @@ html {
     grid-template-columns: 30%, 70%;
     grid-template-rows: 85px 85px 85px 85px 85px 85px;
     gap: 10px;
-    background-color: #fef3ff;
+    background-color: #fdf5fe;
     padding: 10px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
