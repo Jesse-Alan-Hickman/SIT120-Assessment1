@@ -3,30 +3,26 @@
     <head>
         <!-- Character set -->
         <meta charset="UTF-8">
+        
         <!-- Linking main.css -->
         <link href="main.css" rel = "stylesheet" type = "text/css"/>
-        <link href="style.css" rel = "stylesheet" type = "text/css"/>
+
         <!-- Linking js file -->
         <script src="./script.js"></script>
+
         <!-- Vue Import-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
         <script src="https://unpkg.com/@chenfengyuan/vue-qrcode@1.0.1/dist/vue-qrcode.min.js"></script>
-        <script>Vue.component(VueQrcode.name, VueQrcode);</script>
+    
         <!-- Viewport -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <style>
-        * {
-            box-sizing: border-box;
-        }
-        </style>
 
         <!-- Title of webpage -->
         <title>My Baby's Name</title>
     </head>
 
     <body>  
-        <!-- Entire app - encompassing each webpage -->
+        <!-- Entire App - Encompassing each webpage -->
         <div id="app">
 
             <!-- Login/Signup Page ****************************************************************************************** -->
@@ -51,18 +47,12 @@
 
                     <!-- Create new account -->
                     <div id="signUp" v-show="oldUser==false">
-                        <h2>Create a new Account</h2>
-                        <br>
-                        <input type="text" v-model="usernameNew" class="inputElement" placeholder="Enter new Username...">
-                        <br><br><br>
-                        <input type="password" v-model="passwordNew" class="inputElement" placeholder="Enter new Password...">
-                        <br><br>
-                        <input type="password" v-model="passwordCheck" class="inputElement" placeholder="Confirm new Password...">
-                        <br><br>
-                        <button class="accessButton" @click="checkNewCredentials(passwordNew, passwordCheck);">Create</button>
-                        <br><br>
+                        <h2>Create a new Account</h2><br>
+                        <input type="text" v-model="usernameNew" class="inputElement" placeholder="Enter new Username..."><br><br><br>
+                        <input type="password" v-model="passwordNew" class="inputElement" placeholder="Enter new Password..."><br><br>
+                        <input type="password" v-model="passwordCheck" class="inputElement" placeholder="Confirm new Password..."><br><br>
+                        <button class="accessButton" @click="checkNewCredentials(passwordNew, passwordCheck);">Create</button><br><br>
                         <button class="accessButton" @click="oldUser = !oldUser" >Return to Log in</button>
-                        <div id="app"></div>
                     </div>
                 </div>
             </div>
@@ -91,10 +81,9 @@
                 </div>
 
                 <!-- List of Boy Names -->
-                <div id="boys" v-show="showBoyNames" style="margin-top: 110px;"> 
+                <div class="boys" v-show="showBoyNames" style="margin-top: 130px;"> 
                     <div class="grid-container1" style="padding-bottom: 80px;">
-                        <ul class="name" v-for="name in boyNames">
-                            
+                        <ul v-for="name in boyNames">
                             <div class="symbols">
                                 <img v-if="name.favourited == true" @click="name.favourited = !name.favourited" src="./images/heart_symbol.png" width="60" height="60" alt="Symbol">
                                 <img v-else @click="name.favourited = !name.favourited" src="./images/add_symbol.png" width="60" height="60" alt="Symbol">
@@ -108,10 +97,9 @@
                 </div>
 
                 <!-- List of Girl Names -->
-                <div id="girls" v-show="showGirlNames">
+                <div class="girls" v-show="showGirlNames">
                     <div class="grid-container2" style="padding-bottom: 80px;">
-                        <ul class="name" v-for="name in girlNames">
-
+                        <ul v-for="name in girlNames">
                             <div class="symbols">
                                 <img v-if="name.favourited == true" @click="name.favourited = !name.favourited" src="./images/heart_symbol.png" width="60" height="60" alt="Symbol">
                                 <img v-else @click="name.favourited = !name.favourited" src="./images/add_symbol.png" width="60" height="60" alt="Symbol">
@@ -180,11 +168,11 @@
                     <!-- Filter Options -->
                     <div class="filter">
                         
-                        <button class="accessButton" style="background-color: rgb(156, 212, 156); width: 10%;" v-show="filterOn" @click="openFilter();">Name Options</button>
+                        <button class="filterButton" v-show="filterOn" @click="openFilter();">Name Options</button>
 
                         <Transition class="filter-options">
                             <div v-show="filterOn == false">
-                                <button class="accessButton" style="background-color: rgb(156, 212, 156); width: 10%;" v-show="filterOn == false" @click="fullNameEdit(); closeFilter();">Save & Close</button>
+                                <button class="filterButton" v-show="filterOn == false" @click="fullNameEdit(); closeFilter();">Save & Close</button>
 
                                 <h1><br> Naming Options</h1> <br>
 
@@ -210,9 +198,9 @@
                 
                 <div style="margin-top: 220px;">
                     <!-- List of Boy Names -->
-                    <div id="boys" v-show="showBoyNames" style="padding-bottom:250px; float: left; width: 50%;">
+                    <div class="boys" v-show="showBoyNames" style="padding-bottom:250px; float: left; width: 50%;">
                         <div>
-                            <ul class="name" v-for="name in boyNames">
+                            <ul v-for="name in boyNames">
                                 <div v-if="name.favourited">
                                     <div>
                                         {{ emptyCheckBoys() }}
@@ -235,9 +223,9 @@
                     </div>
 
                     <!-- List of Girl Names -->
-                    <div id="girls" v-show="showGirlNames" style="padding-bottom:250px; float: left; width: 50%; ">
+                    <div class="girls" v-show="showGirlNames" style="padding-bottom:250px; float: left; width: 50%; ">
                         <div>
-                            <ul class="name" v-for="name in girlNames">
+                            <ul v-for="name in girlNames">
                                 <div v-if="name.favourited">
                                     <div>
                                     {{ emptyCheckGirls() }}
