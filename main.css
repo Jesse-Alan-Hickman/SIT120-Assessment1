@@ -1,3 +1,6 @@
+/* ******************************************************************* General App ******************************************************************** */
+
+
 /* Initial Setting for App */
 @media screen {
     * {
@@ -7,128 +10,94 @@
     }
 }
 
-/* Transition Data */
+/* Body CSS */
 @media screen {
-    .v-enter-active,
-    .v-leave-active {
-    transition: opacity 0.5s ease;
+    body {
+        background-color: #ffffff
     }
 }
 
-/* Transition Data */
+/* Vertical Scroll */
 @media screen {
-    .v-enter-from,
-    .v-leave-to {
-    opacity: 0;
+    html {
+        overflow-y: scroll;
+    } 
+}
+
+/* Footer - Over 1300px */
+@media screen and (min-width: 1300px) {
+    #footer {
+        background-color: #ffebd2;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 80px;
+        margin-top: -80px;
+        clear: both;
+        text-align: right;
+        padding: 25px;
+        font-size: smaller;
     }
 }
 
-/* Login Logo */
+/* Footer - Between 0px and 1300px */
+@media screen and (min-width: 0px) and (max-width: 1300px) {
+    #footer {
+        background-color: #ffebd2;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 80px;
+        margin-top: -80px;
+        clear: both;
+        text-align: right;
+        padding: 25px;
+        font-size: smaller;
+    }
+}
+
+
+/* ******************************************************************** Login Page ********************************************************************** */
+
+
+/* Login Logo - Over 1300px */
 @media screen and (min-width: 1300px) {
     #loginLogo {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        text-align: center;
-        padding-top: 50px;
+        margin-left: 25%;
+        width: 50%;
+        height: 20%;
+    }
+}
+
+/* Login Logo - Between 700px and 1300px */
+@media screen and (min-width: 700px) and (max-width: 1300px) {
+    #loginLogo {
+        margin-left: 15%;
+        width: 65%;
+        height: 20%;
+    }
+}
+
+/* Login Logo - Between 0px and 700px */
+@media screen and (min-width: 0px) and (max-width: 700px) {
+    #loginLogo {
+        margin-left: 0%;
+        width: 100%;
+        height: 20%;
     }
 }
 
 /* Credentials Data */
-@media screen and (min-width: 1300px) {
+@media screen {
     #credentials {
         text-align: center;
     }
 }
 
-/* Naming Options Drop-down Filter */
-@media screen and (min-width: 1300px) {
-    .filter {
-        text-align: center;
-        width: 100%;
-        float: left;
-        background-color: rgb(247, 247, 247);
-        border-bottom: solid rgb(193, 193, 193);
-        border-top: solid rgb(193, 193, 193);
-    }
-}
-
-/* Empty Favourites Message */
-@media screen and (min-width: 1300px) {
-    .emptyMessage {
-        text-align: center;
-        position: fixed;
-        width: 50%;
-    }
-}
-
-/* Favourites Name Viewer - Complete */
-@media screen and (min-width: 1300px) {
-    #nameViewer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        padding-bottom: 80px;
-        clear: both;
-    }
-}
-
-/* Favourites Name Viewer - First Name */
-@media screen and (min-width: 1300px) {
-    #firstName {
-        background-color: rgb(225, 223, 223);
-        color: black;
-        height: 150px;
-        text-align: center;
-        line-height: 130px;
-        border: solid white;
-        border-right-width: 2px;
-        border-bottom-width: 10px;
-        border-left-width: 15px;
-        font-size: 80px;
-        width: 33%;
-        float: left;
-    }
-}
-
-/* Favourites Name Viewer - Middle Name */
-@media screen and (min-width: 1300px) {
-    #middleName {
-        background-color: rgb(225, 223, 223);
-        color: black;
-        height: 150px;
-        text-align: center;
-        line-height: 130px;
-        border: solid white;
-        border-right-width: 2px;
-        border-bottom-width: 10px;
-        font-size: 80px;
-        width: 33%;
-        float: left;
-    }
-}
-
-/* Favourites Name Viewer - Last Name */
-@media screen and (min-width: 1300px) {
-    #lastName {
-        background-color: rgb(225, 223, 223);
-        color: black;
-        height: 150px;
-        text-align: center;
-        line-height: 130px;
-        border: solid white;
-        border-right-width: 2px;
-        border-bottom-width: 10px;
-        font-size: 80px;
-        width: 33%;
-        float: left;
-    }
-}
-
-/* Website Input Elements */
+/* Website Input Elements - Over 1300px */
 @media screen and (min-width: 1300px) {
     .inputElement {
-        width: 400px;
+        width: 25%;
         height: 40px;
         font-size: 20px;
         border-radius: 0.8em;
@@ -138,8 +107,46 @@
     }
 }
 
-/* Login Buttons */
+/* Website Input Elements - Between 800px and 1300px */
+@media screen and (min-width: 800px) and (max-width: 1300px) {
+    .inputElement {
+        width: 30%;
+        height: 40px;
+        font-size: 20px;
+        border-radius: 0.8em;
+        background-color: rgb(246, 243, 243);
+        border: solid black;
+        text-indent: 20px;
+    }
+}
+
+/* Website Input Elements - Between 0px and 800px */
+@media screen and (min-width: 0px) and (max-width: 800px) {
+    .inputElement {
+        width: 70%;
+        height: 30px;
+        font-size: 20px;
+        border-radius: 0.8em;
+        background-color: rgb(246, 243, 243);
+        border: solid black;
+        text-indent: 20px;
+    }
+}
+
+/* Login Buttons - Over 1300px */
 @media screen and (min-width: 1300px) {
+    .accessButton {
+        font-size: 20px;
+        background-color: rgb(53, 79, 117);
+        border: solid;
+        border-radius: 0.3em;
+        padding: 10px;
+        color: white;
+    }
+}
+
+/* Login Buttons - Between 0px and 1300px */
+@media screen and (min-width: 0px) and (max-width: 1300px) {
     .accessButton {
         font-size: 20px;
         background-color: rgb(53, 79, 117);
@@ -157,54 +164,22 @@
     }
 }
 
-/* Filter Buttons */
-@media screen and (min-width: 1300px) {
-    .filterButton {
-        font-size: 20px;
-        background-color: rgb(82, 195, 74);
-        border: solid;
-        border-radius: 0.3em;
-        padding: 10px;
-        color: white;
-    }
-}
 
-/* Filter Buttons - Hover */
+/* ******************************************************************** Home Page ********************************************************************** */
+
+
+/* Favourited, Add, & Red-Cross Symbols */
 @media screen {
-    .filterButton:hover {
-        background-color: rgb(125, 209, 119);
-    }
-}
-
-/* Footer */
-@media screen and (min-width: 1300px) {
-    #footer {
-        background-color: #ffebd2;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        height: 80px;
-        margin-top: -80px;
-        clear: both;
-        text-align: right;
-        padding: 25px;
-        font-size: smaller;
-    }
-}
-
-/* Header */
-@media screen and (min-width: 1300px) {
-    .logo {
-        background-color: #fef4e8;
+    .symbols {
         float: left;
+        width: 30px;
         text-align: left;
-        width: 25%;
-        block-size: 130px;
+        padding-left: 5px;
     }
 }
 
-/* My Account Logo */
-@media screen and (min-width: 1300px) {
+/* My Account Logo - Over 1000px */
+@media screen and (min-width: 1000px) {
     .accountLogo {
         background-color: #ffebd2;
         display: flex;
@@ -220,8 +195,25 @@
     }
 }
 
-/* My Account Identification */
-@media screen and (min-width: 1300px) {
+/* My Account Logo - Between 0px and 1000px */
+@media screen and (min-width: 0px) and (max-width: 1000px) {
+    .accountLogo {
+        background-color: #ffebd2;
+        display: none;
+        color: #2a2a2a;
+        float: left;
+        text-align: right;
+        block-size: 130px;
+        align-items: center;
+        justify-content:right;
+        width: 5%;
+        font-size: 30px;
+        border-left:2px solid #ffffff;
+    }
+}
+
+/* My Account Identification - Over 1000px */
+@media screen and (min-width: 1000px) {
     .account {
         background-color: #ffebd2;
         color: #2a2a2a;
@@ -237,8 +229,25 @@
     }
 }
 
+/* My Account Identification - Between 0px and 1000px */
+@media screen and (min-width: 0px) and (max-width: 1000px) {
+    .account {
+        background-color: #ffebd2;
+        color: #2a2a2a;
+        float: right;
+        align-items: center;
+        justify-content:left;
+        padding-left: 10px;
+        display: none;
+        block-size: 130px;
+        width: 15%;
+        font-size: 15px;
+        font-family: Arial;
+    }
+}
+
 /* Navigation Bar*/
-@media screen and (min-width: 1300px) {
+@media screen {
     .navBar {
         position: fixed;
         z-index: 1;
@@ -246,8 +255,47 @@
         top: 0;
     }
 }
-/* Individual Navigation Buttons */
-@media screen and (min-width: 1300px) {
+
+/* Navigation Bar Background */
+@media screen {
+    .navBackground {
+        background-color: #fef4e8;
+        float: left;
+        text-align: left;
+        width: 25%;
+    }
+}
+
+/* Navigation Bar Background - Between 0px and 1000px */
+@media screen and (min-width: 0px) and (max-width: 1000px) {
+    .navBackground {
+        background-color: #fef4e8;
+        float: left;
+        text-align: center;
+        width: 100%;
+        height: 100px;
+    }
+}
+
+/* Navigation Logo - Over 1000px */
+@media screen and (min-width: 1000px) {
+    #navLogo {
+        width: 100%;
+        height: 125px;
+    }
+}
+
+/* Navigation Logo - Between 0px and 1000px */
+@media screen and (min-width: 0px) and (max-width: 1000px) {
+    #navLogo {
+        width: 50%;
+        height: 100px;
+
+    }
+}
+
+/* Individual Navigation Buttons - Over 1000px */
+@media screen and (min-width: 1000px) {
     .navButton {
         color: #646464;
         height: 40px;
@@ -263,15 +311,32 @@
     }
 }
 
-/* Navigation Buttons - Hover */
+/* Individual Navigation Buttons - Between 480px and 1000px */
+@media screen and (min-width: 0px) and (max-width: 1000px) {
+    .navButton {
+        color: #646464;
+        height: 40px;
+        width: 40%;
+        border: solid #fef4e8;
+        font-size: 20px;
+        font-weight: lighter;
+        transition: all 0.5s;
+        text-align: center;
+        font-family: Verdana, Tahoma, sans-serif;
+        border-radius: 0.5em;
+        display: block;
+    }
+}
+
+/* Individual Navigation Buttons - Hover */
 @media screen {
     .navButton:hover {
         background-color: #fcead4;
     }
 }
 
-/* Navigation Button Group */
-@media screen and (min-width: 1300px) {
+/* Navigation Button Group - Over 900px */
+@media screen and (min-width: 900px) {
     #navButtons {
         float: left;
         align-items: center;
@@ -286,27 +351,24 @@
     }
 }
 
-/* Naming symbols */
-@media screen and (min-width: 1300px) {
-    .addSymbols {
+/* Navigation Button Group - Between 0px and 1000px */
+@media screen and (min-width: 0px) and (max-width: 1000px)  {
+    #navButtons {
         float: left;
-        width: 30px;
-        text-align: left;
+        align-items: center;
+        justify-content: left;
+        font-family: Arial;
+        padding-left: 10px;
+        display: flex;
+        block-size: 40px;
+        background-color: #fef4e8;
+        width: 100%;
+        padding-right: 20px;
     }
 }
 
-/* Favourited, Add, & Red-Cross Symbols */
-@media screen and (min-width: 1300px) {
-    .symbols {
-        float: left;
-        width: 30px;
-        text-align: left;
-        padding-left: 5px;
-    }
-}
-
-/* Listed Names in Website */
-@media screen and (min-width: 1300px) {
+/* Listed Names in Home - Over 1000px */
+@media screen and (min-width: 1000px) {
     .babyNames {
         font-size: 50px;
         color: black;
@@ -316,16 +378,25 @@
     }
 }
 
-/* Boy Names Grid Container */
-@media screen and (min-width: 1300px) {
+/* Listed Names in Home - Between 0px and 1000px */
+@media screen and (min-width: 0px) and (max-width: 1000px) {
+    .babyNames {
+        font-size: 30px;
+        color: black;
+        font-family:Arial, Helvetica, sans-serif;
+        padding: 10px;
+        text-align: center;
+    }
+}
+
+/* Boy Names Grid Container - Over 1000px */
+@media screen and (min-width: 1000px) {
     .grid-container1 {
         width: 50%;
         display: grid;
         float: left;
         grid-template-columns: 30%, 70%;
         gap: 10px;
-        background-color: #f9ffff; 
-    background-color: #f9ffff; 
         background-color: #f9ffff; 
         padding: 10px;
         border-top-left-radius: 10px;
@@ -335,8 +406,25 @@
     }
 }
 
-  /* Boy Names Grid Container */
-@media screen and (min-width: 1300px) {
+/* Boy Names Grid Container - Between 0px and 1000px */
+@media screen and (min-width: 0px) and (max-width: 1000px) {
+    .grid-container1 {
+        width: 100%;
+        display: grid;
+        float: left;
+        grid-template-columns: 30%, 70%;
+        gap: 10px;
+        background-color: #f9ffff; 
+        padding: 10px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        opacity: 0.7;
+        text-align: center;
+    }
+}
+
+/* Boy Names Grid Container > div */
+@media screen {
     .grid-container1 > div {
         background-color: #f4fffe;
         text-align: center;
@@ -345,8 +433,8 @@
     }
 }
 
-  /* Girl Names Grid Container */
-@media screen and (min-width: 1300px) {
+/* Girl Names Grid Container - Over 1000px */
+@media screen and (min-width: 1000px) {
     .grid-container2 {
         width: 50%;
         display: grid;
@@ -361,9 +449,26 @@
         text-align: center;
     }
 }
+
+/* Girls Names Grid Container - Between 0px and 1000px */
+@media screen and (min-width: 0px) and (max-width: 1000px) {
+    .grid-container2 {
+        width: 100%;
+        display: grid;
+        float: right;
+        grid-template-columns: 30%, 70%;
+        gap: 10px;
+        background-color: #fdf5fe;
+        padding: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        opacity: 0.7;
+        text-align: center;
+    }
+}
   
-  /* Girl Names Grid Container */
-@media screen and (min-width: 1300px) {
+  /* Girl Names Grid Container > div */
+@media screen {
     .grid-container2 > div {
         background-color: #fef4ff;
         text-align: center;
@@ -372,17 +477,8 @@
     }
 }
 
-/* Body CSS */
+/* Boys Names */
 @media screen {
-    body {
-        background-color: #ffffff
-    }
-}
-
-/* ********************************************************************************************************************************************************************* */
-
-/* Boys Names Over 1300px */
-@media screen and (min-width: 1300px) {
     #boys {
         float: left;
         width: 50%;
@@ -395,8 +491,8 @@
     }
 }
 
-/* Girls Names Over 1300px */
-@media screen and (min-width: 1300px) {
+/* Girls Names */
+@media screen {
     #girls {
         float: right;
         width: 50%;
@@ -409,56 +505,471 @@
     }
 }
 
-/* Boys Names Between 480px and 1300px */
-@media screen and (min-width: 480px) and (max-width: 1300px) {
-    #boys {
-    float: left;
-    width: 50%;
-    color: #2a2a2a;
-    font-weight: bolder;
-    font-size: larger;
-    text-align: center;
-    border-right: 2px solid rgba(105, 105, 105, 0.09);
-    border-top: 4px solid rgba(105, 105, 105, 0.09);
+
+/* ******************************************************************* Favourites Page ******************************************************************** */
+
+
+/* Listed Names in Favourites */
+@media screen  {
+    .favBabyNames {
+        font-size: 50px;
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 10px;
+        text-align: center;
+        width: 200%;
     }
 }
 
-/* Girls Names Between 480px and 1300px */
-@media screen and (min-width: 480px) and (max-width: 1300px) {
-    #girls {
-    float: right;
-    width: 50%;
-    color: #2a2a2a;
-    font-weight: bolder;
-    font-size: larger;
-    text-align: center;
-    border-left: 2px solid rgba(105, 105, 105, 0.09);
-    border-top: 4px solid rgba(105, 105, 105, 0.09);
+/* Naming Options Transition Data */
+@media screen {
+    .v-enter-active,
+    .v-leave-active {
+    transition: opacity 0.5s ease;
     }
 }
 
-/* Boys Under 480px */
-@media screen and (max-width: 480px) {
-    #boys {
-    float: left;
-    width: 100%;
-    color: #2a2a2a;
-    font-weight: bolder;
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 20px;
+/* Naming Options Transition Data */
+@media screen {
+    .v-enter-from,
+    .v-leave-to {
+    opacity: 0;
     }
 }
 
-/* Girls Under 480px */
-@media screen and (max-width: 480px) {
-    #girls {
-    float: left;
-    width: 100%;
-    color: #2a2a2a;
-    font-weight: bolder;
-    text-align: center;
-    padding-top: 10px;
-    border-top: 4px solid rgba(105, 105, 105, 0.031);
+/* Naming Options Drop-down Filter */
+@media screen {
+    .filter {
+        text-align: center;
+        width: 100%;
+        float: left;
+        background-color: rgb(247, 247, 247);
+        border-bottom: solid rgb(193, 193, 193);
+        border-top: solid rgb(193, 193, 193);
+    }
+}
+
+/* Naming Options Drop-down Filter */
+@media screen {
+    .filter {
+        text-align: center;
+        width: 100%;
+        float: left;
+        background-color: rgb(247, 247, 247);
+        border-bottom: solid rgb(193, 193, 193);
+        border-top: solid rgb(193, 193, 193);
+    }
+}
+
+/* Favourite Headings - Between 0px and 1000px */
+@media screen and (min-width: 0px) and (max-width: 1000px) {
+    .favHeadings {
+        float: left;
+        text-align: center;
+        width: 100%;
+        height: 100px;
+    }
+}
+
+/* Empty Favourites Message - Over 1000px */
+@media screen and (min-width: 1000px) {
+    .emptyMessage {
+        text-align: center;
+        position: fixed;
+        width: 50%;
+        font-size: 30px
+    }
+}
+
+/* Empty Favourites Message - Between 0px and 1000px */
+@media screen and (min-width: 0px) and (max-width: 1000px){
+    .emptyMessage {
+        text-align: center;
+        width: 200%;
+        font-size: 30px;
+    }
+}
+
+/* Favourites Name Viewer Complete */
+@media screen  {
+    #nameViewer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        padding-bottom: 80px;
+        clear: both;
+    }
+}
+
+/* Favourites Name Viewer - First Name - Over 1300px */
+@media screen and (min-width: 1300px) {
+    #firstName {
+        background-color: rgb(225, 223, 223);
+        color: black;
+        height: 10%;
+        text-align: center;
+        line-height: 130px;
+        border: solid white;
+        border-right-width: 2px;
+        border-bottom-width: 10px;
+        border-left-width: 15px;
+        font-size: 80px;
+        width: 33%;
+        float: left;
+    }
+}
+
+/* Favourites Name Viewer - First Name - Between 1000px and 1300px */
+@media screen and (min-width: 1000px) and (max-width: 1300px){
+    #firstName {
+        background-color: rgb(225, 223, 223);
+        color: black;
+        height: 10%;
+        text-align: center;
+        line-height: 80px;
+        border: solid white;
+        border-right-width: 2px;
+        border-bottom-width: 10px;
+        font-size: 60px;
+        width: 33%;
+        float: left;
+    }
+}
+
+/* Favourites Name Viewer - First Name - Between 700px and 1000px */
+@media screen and (min-width: 700px) and (max-width: 1000px) {
+    #firstName {
+        background-color: rgb(225, 223, 223);
+        color: black;
+        height: 10%;
+        text-align: center;
+        line-height: 50px;
+        border: solid white;
+        border-right-width: 2px;
+        border-bottom-width: 10px;
+        font-size: 40px;
+        width: 33%;
+        float: left;
+    }
+}
+
+/* Favourites Name Viewer - First Name - Between 0px and 700px */
+@media screen and (min-width: 0px) and (max-width: 700px) {
+    #firstName {
+        background-color: rgb(225, 223, 223);
+        color: black;
+        height: 10%;
+        text-align: center;
+        line-height: 30px;
+        border-top: solid #2a2a2a;
+        font-size: 30px;
+        width: 100%;
+        float: left;
+        border-left: solid white;
+        border-right: solid white;
+    }
+}
+
+/* Favourites Name Viewer - Middle Name - Over 1300px */
+@media screen and (min-width: 1300px) {
+    #middleName {
+        background-color: rgb(225, 223, 223);
+        color: black;
+        height: 10%px;
+        text-align: center;
+        line-height: 130px;
+        border: solid white;
+        border-right-width: 2px;
+        border-bottom-width: 10px;
+        font-size: 80px;
+        width: 33%;
+        float: left;
+    }
+}
+
+/* Favourites Name Viewer - Middle Name - Between 1000px and 1300px*/
+@media screen and (min-width: 1000px) and (max-width: 1300px) {
+    #middleName {
+        background-color: rgb(225, 223, 223);
+        color: black;
+        height: 10%;
+        text-align: center;
+        line-height: 80px;
+        border: solid white;
+        border-right-width: 2px;
+        border-bottom-width: 10px;
+        font-size: 60px;
+        width: 33%;
+        float: left;
+    }
+}
+
+/* Favourites Name Viewer - Middle Name - Between 700px and 1000px */
+@media screen and (min-width: 700px) and (max-width: 1000px) {
+    #middleName {
+        background-color: rgb(225, 223, 223);
+        color: black;
+        height: 10%;
+        text-align: center;
+        line-height: 50px;
+        border: solid white;
+        border-right-width: 2px;
+        border-bottom-width: 10px;
+        font-size: 40px;
+        width: 33%;
+        float: left;
+    }
+}
+
+/* Favourites Name Viewer - Middle Name - Between 0px and 700px */
+@media screen and (min-width: 0px) and (max-width: 700px) {
+    #middleName {
+        background-color: rgb(225, 223, 223);
+        color: black;
+        height: 10%;
+        text-align: center;
+        line-height: 30px;
+        font-size: 30px;
+        width: 100%;
+        float: left;
+        border: solid white;
+        border-bottom: none;
+    }
+}
+
+/* Favourites Name Viewer - Last Name - Over 1300px */
+@media screen and (min-width: 1300px) {
+    #lastName {
+        background-color: rgb(225, 223, 223);
+        color: black;
+        height: 10%;
+        text-align: center;
+        line-height: 130px;
+        border: solid white;
+        border-right-width: 2px;
+        border-bottom-width: 10px;
+        font-size: 80px;
+        width: 33%;
+        float: left;
+    }
+}
+
+/* Favourites Name Viewer - Last Name - Between 1000px and 1300px*/
+@media screen and (min-width: 1000px) and (max-width: 1300px) {
+    #lastName {
+        background-color: rgb(225, 223, 223);
+        color: black;
+        height: 10%;
+        text-align: center;
+        line-height: 80px;
+        border: solid white;
+        border-right-width: 2px;
+        border-bottom-width: 10px;
+        font-size: 60px;
+        width: 33%;
+        float: left;
+    }
+}
+
+/* Favourites Name Viewer - Last Name - Between 700px and 1000px */
+@media screen and (min-width: 700px) and (max-width: 1000px) {
+    #lastName {
+        background-color: rgb(225, 223, 223);
+        color: black;
+        height: 10%;
+        text-align: center;
+        line-height: 50px;
+        border: solid white;
+        border-right-width: 2px;
+        border-bottom-width: 10px;
+        font-size: 40px;
+        width: 33%;
+        float: left;
+    }
+}
+
+/* Favourites Name Viewer - Last Name - Between 0px and 700px */
+@media screen and (min-width: 0px) and (max-width: 700px) {
+    #lastName {
+        background-color: rgb(225, 223, 223);
+        color: black;
+        height: 10%;
+        text-align: center;
+        line-height: 30px;
+        font-size: 30px;
+        width: 100%;
+        float: left;
+        border: solid white;
+    }
+}
+
+/* Filter Buttons - Over 600px */
+@media screen and (min-width: 600px) {
+    .filterButton {
+        font-size: 20px;
+        background-color: rgb(82, 195, 74);
+        border: solid;
+        border-radius: 0.3em;
+        padding: 10px;
+        color: white;
+    }
+}
+
+/* Filter Buttons - Between 0px and 600px */
+@media screen and (min-width: 0px) and (max-width: 600px){
+    .filterButton {
+        font-size: 15px;
+        background-color: rgb(82, 195, 74);
+        border: solid;
+        border-radius: 0.3em;
+        padding: 10px;
+        color: white;
+    }
+}
+
+/* Filter Buttons - Hover */
+@media screen {
+    .filterButton:hover {
+        background-color: rgb(125, 209, 119);
+    }
+}
+
+/* Filter Input Elements - Over 1300px */
+@media screen and (min-width: 1300px) {
+    .filterInput {
+        width: 17%;
+        height: 40px;
+        font-size: 20px;
+        border-radius: 0.8em;
+        background-color: rgb(246, 243, 243);
+        border: solid black;
+        text-indent: 20px;
+    }
+}
+
+/* Filter Input Elements - Between 1000px and 1300px */
+@media screen and (min-width: 1000px) and (max-width: 1300px){
+    .filterInput {
+        width: 20%;
+        height: 40px;
+        font-size: 20px;
+        border-radius: 0.8em;
+        background-color: rgb(246, 243, 243);
+        border: solid black;
+        text-indent: 20px;
+    }
+}
+
+/* Filter Input Elements - Between 800px and 1000px */
+@media screen and (min-width: 800px) and (max-width: 1000px){
+    .filterInput {
+        width: 25%;
+        height: 40px;
+        font-size: 20px;
+        border-radius: 0.8em;
+        background-color: rgb(246, 243, 243);
+        border: solid black;
+        text-indent: 20px;
+    }
+}
+
+/* Filter Input Elements - Between 600px and 800px */
+@media screen and (min-width: 600px) and (max-width: 800px){
+    .filterInput {
+        width: 32%;
+        height: 40px;
+        font-size: 20px;
+        border-radius: 0.8em;
+        background-color: rgb(246, 243, 243);
+        border: solid black;
+        text-indent: 20px;
+    }
+}
+
+/* Filter Input Elements - Between 400px and 600px */
+@media screen and (min-width: 400px) and (max-width: 600px){
+    .filterInput {
+        width: 55%;
+        height: 40px;
+        font-size: 20px;
+        border-radius: 0.8em;
+        background-color: rgb(246, 243, 243);
+        border: solid black;
+        text-indent: 20px;
+    }
+}
+
+
+/* ******************************************************************* Library Page ******************************************************************** */
+
+
+/* Library Introduction Paragraph - Over 1000px */
+@media screen and (min-width: 1000px) {
+    #libraryParagraph {
+        width: 100%;
+        height: 100px;
+        font-size: 30px;
+        text-align: center;
+        color: rgb(8, 49, 90);
+    }
+}
+
+/* Library Introduction Paragraph - Between 0px and 1000px */
+@media screen and (min-width: 0px) and (max-width: 1000px) {
+    #libraryParagraph {
+        width: 100%;
+        height: 100px;
+        font-size: 30px;
+        text-align: center;
+        color: rgb(8, 49, 90);
+        display: none;
+    }
+}
+
+/* Library Search Bar */
+@media screen {
+    #librarySearchBar {
+        width: 100%;
+        height: 60px;
+        font-size: 30px;
+        text-align: center;
+        color: rgb(8, 49, 90);
+    }
+}
+
+/* History Information - Over 1300px */
+@media screen and (min-width: 1300px) {
+    .historyInformation {
+        width: 100%;
+        font-size: 45px;
+        color: rgb(8, 49, 90);
+    }
+}
+
+/* History Information - Between 800px and 1300px */
+@media screen and (min-width: 800px) and (max-width: 1300px) {
+    .historyInformation {
+        width: 100%;
+        font-size: 35px;
+        color: rgb(8, 49, 90);
+    }
+}
+
+/* History Information - Between 400px and 800px */
+@media screen and (min-width: 400px) and (max-width: 800px) {
+    .historyInformation {
+        width: 100%;
+        font-size: 29px;
+        color: rgb(8, 49, 90);
+    }
+}
+
+/* Library Button */
+@media screen {
+    #libraryButton {
+        font-size: 30px;
+        text-align: center;
+        color: rgb(8, 49, 90);
+        border-bottom: solid black;
     }
 }

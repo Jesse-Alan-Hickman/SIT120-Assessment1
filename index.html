@@ -22,10 +22,10 @@
     </head>
 
     <body>  
-        <!-- Entire App - Encompassing each webpage -->
+        <!-- My Baby's Name Application - Encompassing each webpage -->
         <div id="app">
 
-            <!-- Login/Signup Page ****************************************************************************************** -->
+            <!-- ***************************************************************** Login/Sign-up Page ***************************************************************** -->
             <div id="login" v-show="showLogin">
 
                 <!-- Front Page Logo Insert -->
@@ -37,7 +37,6 @@
                     <!-- Sign in -->
                     <div id="signIn" v-show="oldUser">
                         <h2>{{ welcomeMessage }}</h2><br>
-
                         <input type="text" v-model="username" class="inputElement" placeholder="Enter your Username..."><br><br>
                         <input type="password" v-model="password" class="inputElement" placeholder="Enter your Password..."><br><br>
                         <button class="accessButton" @click="checkCredentials();">Log In</button><br><br>
@@ -57,9 +56,11 @@
                 </div>
             </div>
 
-            <!-- Home Page *************************************************************************************************** -->
+
+            <!-- ******************************************************************** Home Page ******************************************************************** -->
             <div id="home" v-show="showHome">
                 <div class="navBar">
+
                     <!-- Webpage Logo Insert -->
                     <app-logo></app-logo>
 
@@ -88,7 +89,6 @@
                                 <img v-if="name.favourited == true" @click="name.favourited = !name.favourited" src="./images/heart_symbol.png" width="60" height="60" alt="Symbol">
                                 <img v-else @click="name.favourited = !name.favourited" src="./images/add_symbol.png" width="60" height="60" alt="Symbol">
                             </div> 
-
                             <div class="babyNames">
                                 {{ name.name }}
                             </div>
@@ -104,7 +104,6 @@
                                 <img v-if="name.favourited == true" @click="name.favourited = !name.favourited" src="./images/heart_symbol.png" width="60" height="60" alt="Symbol">
                                 <img v-else @click="name.favourited = !name.favourited" src="./images/add_symbol.png" width="60" height="60" alt="Symbol">
                             </div>  
-
                             <div class="babyNames">
                                 {{ name.name }}
                             </div>
@@ -113,7 +112,8 @@
                 </div>
             </div>
 
-            <!-- Library Page *************************************************************************************************** -->
+
+            <!-- ******************************************************************** Library Page ******************************************************************** -->
             <div id="library" v-show="showLibrary">
                 <div class=navBar>
 
@@ -137,11 +137,35 @@
                     </div>
                 </div>
 
-                <div style="margin-top: 150px;">Library Page</div>
-            
+                <!-- Library Introduction Paragraph -->
+                <div style="margin-top: 150px;">
+                    <p id="libraryParagraph"> Use the search function on this page to find out more about a name!</p>
+                </div>
+
+                <!-- Library Search Bar -->
+                <div id="librarySearchBar">
+                    <input type="text" class="inputElement" v-model="librarySearch" placeholder="Search for a name..."> <br>
+                </div> 
+
+                <!-- Library Search Button -->
+                <div id="libraryButton">
+                    <button class="accessButton" @click="searchLibrary();">Search</button> <br>
+                </div>
+                <br><br>
+
+                <!-- History Information - Boys -->
+                <div class="historyInformation" v-for="name in boyNames">
+                    <p v-if="name.name == libraryObject ">{{ name.history }}</p>
+                </div>
+
+                <!-- History Information - Girls -->
+                <div class="historyInformation" v-for="name in girlNames">
+                    <p v-if="name.name == libraryObject ">{{ name.history }}</p>
+                </div>
             </div>
 
-            <!-- Favourites Page *************************************************************************************************** -->
+
+            <!-- ******************************************************************** Favourites Page ******************************************************************** -->
             <div id="favourites" v-show="showFavourites">
 
                 <div class="navBar">
@@ -168,44 +192,49 @@
                     <!-- Filter Options -->
                     <div class="filter">
                         
+                        <!-- Naming Options Filter Button -->
                         <button class="filterButton" v-show="filterOn" @click="openFilter();">Name Options</button>
 
+                        <!-- Naming Options Drop-Down Filter -->
                         <Transition class="filter-options">
                             <div v-show="filterOn == false">
                                 <button class="filterButton" v-show="filterOn == false" @click="fullNameEdit(); closeFilter();">Save & Close</button>
 
-                                <h1><br> Naming Options</h1> <br>
+                                <!-- Filter Title -->
+                                <h1><br> Naming Options</h1><br>
 
+                                <!-- First Name Input -->
                                 <h4>Type a first name:</h4><br>
-                                
-                                <input class="inputElement" type="text" placeholder="Enter First Name..." style="width: 15%;" v-model.trim="firstNameChange"/>
+                                <input class="filterInput" type="text" placeholder="Enter First Name..." v-model.trim="firstNameChange"/>
                                 <br><br><br>
 
+                                <!-- Middle and Last Name Inputs -->
                                 <h4>Complete the full name:</h4><br>
-                                <input class="inputElement" type="text" placeholder="Enter Middle Name..." style="width: 15%;" v-model.trim="middleNameChange" />
+                                <input class="filterInput" type="text" placeholder="Enter Middle Name..." v-model.trim="middleNameChange" />
                                 <br><br>
-                                
-                                <input class="inputElement" type="text" placeholder="Enter Last Name..." style="width: 15%;" v-model.trim="lastNameChange" />
+                                <input class="filterInput" type="text" placeholder="Enter Last Name..." v-model.trim="lastNameChange" />
                                 <br><br>
                             </div>
                         </Transition>
                         
                     </div> 
-
-                    <h1 v-show="filterOn == true" style="text-align: center; color: rgb(27, 109, 202); width: 50%; float: left; background-color: white;">Favourite Boy Names:</h1>
-                    <h1 v-show="filterOn == true" style="text-align: center; color: rgb(252, 165, 180); width: 50%; float: right; background-color: white;">Favourite Girl Names:</h1>
                 </div>
                 
-                <div style="margin-top: 220px;">
-                    <!-- List of Boy Names -->
-                    <div class="boys" v-show="showBoyNames" style="padding-bottom:250px; float: left; width: 50%;">
-                        <div>
+                <!-- List of Favourited Boy Names -->
+                <div style="margin-top: 200px;">
+                    <div class="grid-container1">
+
+                        <!-- Boy Name Title -->
+                        <h1 v-show="filterOn == true" class="favHeadings" style="color: rgb(27, 109, 202);">Favourite Boy Names:</h1>
+
+                        <!-- Boy Name List Loop -->
+                        <div class="boys" v-show="showBoyNames" style="padding-bottom:250px; float: left; width: 50%;">
                             <ul v-for="name in boyNames">
                                 <div v-if="name.favourited">
                                     <div>
                                         {{ emptyCheckBoys() }}
                                     </div>
-                                    <div class="babyNames">
+                                    <div class="favBabyNames">
                                         <div class="symbols">
                                             <img @click="name.favourited = !name.favourited" src="./images/red_cross.png" width="55" height="55" alt="Symbol" style="background-color: #f9ffff;">
                                         </div>  
@@ -215,22 +244,29 @@
                                     </div>
                                 </div>
                             </ul>
+
+                            <!-- Boys Empty Message -->
                             <div class="emptyMessage" v-show="emptyMessageBoys">
                                 <br><br>
-                                <p style="font-size: 30px">You have no favourited boy names.</p>
+                                <p>You have no favourited boy names.</p>
                             </div> 
                         </div>
                     </div>
 
-                    <!-- List of Girl Names -->
-                    <div class="girls" v-show="showGirlNames" style="padding-bottom:250px; float: left; width: 50%; ">
-                        <div>
+                    <!-- List of Favourited Girl Names -->
+                    <div class="grid-container2">
+
+                        <!-- Girl Name Title -->
+                        <h1 v-show="filterOn == true" class="favHeadings" style="color: rgb(252, 165, 180);">Favourite Girl Names:</h1>
+                        
+                        <!-- Girl Name List Loop -->
+                        <div class="girls" v-show="showGirlNames" style="padding-bottom:250px; float: left; width: 50%; ">
                             <ul v-for="name in girlNames">
                                 <div v-if="name.favourited">
                                     <div>
                                     {{ emptyCheckGirls() }}
                                     </div>
-                                    <div class="babyNames"> 
+                                    <div class="favBabyNames"> 
                                         <div class="symbols">
                                             <img @click="name.favourited = !name.favourited" src="./images/red_cross.png" width="55" height="55" alt="Symbol" style="background-color: #fdf5fe;">
                                         </div> 
@@ -240,30 +276,37 @@
                                     </div>
                                 </div>
                             </ul>
+
+                            <!-- Girls Empty Message -->
                             <div class="emptyMessage" v-show="emptyMessageGirls">
                                 <br><br>
-                                <p style="font-size: 30px">You have no favourited girl names.</p>
+                                <p>You have no favourited girl names.</p>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div>  
                 
                 <!-- Full Name Display -->
                 <div id = nameViewer>
+
+                    <!-- First Name Display -->
                     <div id="firstName">
                         <p>{{firstName | capitalize }}</p>
                     </div>
 
+                    <!-- Middle Name Display -->
                     <div id="middleName">
                         <p>{{middleName | capitalize}}</p>
                     </div>
 
+                    <!-- Last Name Display -->
                     <div id="lastName">
                         <p>{{lastName | capitalize}}</p>
                     </div>
                 </div>
             </div>
 
+            <!-- Footer -->
             <footer id="footer">
                 <footer-info></footer-info>
             </footer>
@@ -271,12 +314,13 @@
     </body>
 </html>
         
-<!-- Component Import -->
+<!-- Single File Component Imports -->
 <script src="./components/login_logo.js"></script>
 <script src="./components/app_logo.js"></script>
 <script src="./components/account_logo.js"></script>
 <script src="./components/footer.js"></script>
 
+<!-- Filter Creation -->
 <script>
 Vue.filter('capitalize', function (value) {
     return value.toUpperCase()
@@ -291,143 +335,137 @@ Vue.filter('capitalize', function (value) {
     </div>
 </script>
 
+<!-- #app -->
 <script>
     let app = new Vue({
     el: '#app',
         data: {    
             welcomeMessage: 'Welcome!',
-
+            libraryObject: '',
             showLogin: true,
             showHome: false,
             showLibrary: false,
             showFavourites: false,
             showBoyNames: false,
             showGirlNames: false,
-
             username:'',
             password:'',
             usernameNew:'',
             passwordNew:'',
             passwordCheck: '',
-
             oldUser: true,
             filterOn: false,
-
             firstNameChange: '',
             middleNameChange: '',
             lastNameChange: '',
-
             emptyMessageBoys: true,
             emptyMessageGirls: true,
-
-            girlNameAdd: '',
-            boyNameAdd: '',
             firstName: 'First',
             middleName: 'Middle',
             lastName: 'Last',
             boyNames: [
-                {name: 'Oliver', favourited: false},
-                {name: 'Asher', favourited: false},
-                {name: 'Theodore', favourited: false},
-                {name: 'Noah', favourited: false},
-                {name: 'Henry', favourited: false},
-                {name: 'Finn', favourited: false},
-                {name: 'Aiden', favourited: false},
-                {name: 'Alistair', favourited: false},
-                {name: 'Liam', favourited: false},
-                {name: 'Jasper', favourited: false},
-                {name: 'Declan', favourited: false},
-                {name: 'Silas', favourited: false},
-                {name: 'Sebastian', favourited: false},
-                {name: 'Levi', favourited: false},
-                {name: 'Leo', favourited: false},
-                {name: 'Felix', favourited: false},
-                {name: 'Everett', favourited: false},
-                {name: 'Alexander', favourited: false},
-                {name: 'Ethan', favourited: false},
-                {name: 'Caleb', favourited: false},
-                {name: 'Gabriel', favourited: false},
-                {name: 'Atticus', favourited: false},
-                {name: 'Owen', favourited: false},
-                {name: 'Benjamin', favourited: false},
-                {name: 'Grayson', favourited: false},
-                {name: 'Jackson', favourited: false},
-                {name: 'Elijah', favourited: false},
-                {name: 'Lucas', favourited: false},
-                {name: 'August', favourited: false},
-                {name: 'Milo', favourited: false},
-                {name: 'William', favourited: false}, 
-                {name: 'Miles', favourited: false},
-                {name: 'Evander', favourited: false},
-                {name: 'Theo', favourited: false},
-                {name: 'Hudson', favourited: false},
-                {name: 'Emmett', favourited: false},
-                {name: 'Arlo', favourited: false},
-                {name: 'Archer', favourited: false},
-                {name: 'Elias', favourited: false},
-                {name: 'Ronan', favourited: false},
-                {name: 'Isaac', favourited: false},
-                {name: 'Wesley', favourited: false},
-                {name: 'Micah', favourited: false},
-                {name: 'Atlas', favourited: false},
-                {name: 'Beau', favourited: false},
-                {name: 'Luke', favourited: false},
-                {name: 'Nathaniel', favourited: false},
-                {name: 'Thomas', favourited: false},
-                {name: 'Connor', favourited: false},
-                {name: 'Landon', favourited: false},
+                {name: 'Oliver', favourited: false, history: 'Oliver: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Asher', favourited: false, history: 'Asher: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Theodore', favourited: false, history: 'Theodore: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Noah', favourited: false, history: 'Noah: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Henry', favourited: false, history: 'Henry: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Finn', favourited: false, history: 'Finn: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Aiden', favourited: false, history: 'Aiden: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Alistair', favourited: false, history: 'Alistair: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Liam', favourited: false, history: 'Liam: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Jasper', favourited: false, history: 'Jasper: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Declan', favourited: false, history: 'Declan: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Silas', favourited: false, history: 'Silas: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Sebastian', favourited: false, history: 'Sebastian: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Levi', favourited: false, history: 'Levi: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Leo', favourited: false, history: 'Leo: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Felix', favourited: false, history: 'Felix: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Everett', favourited: false, history: 'Everett: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Alexander', favourited: false, history: 'Alexander: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Ethan', favourited: false, history: 'Ethan: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Caleb', favourited: false, history: 'Caleb: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Gabriel', favourited: false, history: 'Gabriel: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Atticus', favourited: false, history: 'Atticus: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Owen', favourited: false, history: 'Owen: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Benjamin', favourited: false, history: 'Benjamin: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Grayson', favourited: false, history: 'Grayson: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Jackson', favourited: false, history: 'Jackson: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Elijah', favourited: false, history: 'Elijah: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Lucas', favourited: false, history: 'Lucas: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'August', favourited: false, history: 'August: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Milo', favourited: false, history: 'Milo: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'William', favourited: false, history: 'William: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}, 
+                {name: 'Miles', favourited: false, history: 'Miles: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Evander', favourited: false, history: 'Evander: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Theo', favourited: false, history: 'Theo: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Hudson', favourited: false, history: 'Hudson: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Emmett', favourited: false, history: 'Emmett: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Arlo', favourited: false, history: 'Arlo: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Archer', favourited: false, history: 'Archer: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Elias', favourited: false, history: 'Elias: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Ronan', favourited: false, history: 'Ronan: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Isaac', favourited: false, history: 'Issac: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Wesley', favourited: false, history: 'Wesley: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Micah', favourited: false, history: 'Micah: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Atlas', favourited: false, history: 'Atlas: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Beau', favourited: false, history: 'Beau: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Luke', favourited: false, history: 'Luke: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Nathaniel', favourited: false, history: 'Nathaniel: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Thomas', favourited: false, history: 'Thomas: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Connor', favourited: false, history: 'Connor: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Landon', favourited: false, history: 'Landon: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
             ],
             girlNames: [    
-                {name: 'Violet', favourited: false},
-                {name: 'Charlotte', favourited: false},
-                {name: 'Auora', favourited: false},
-                {name: 'Amelia', favourited: false},
-                {name: 'Hazel', favourited: false},
-                {name: 'Luna', favourited: false},
-                {name: 'Sophia', favourited: false},
-                {name: 'Ivy', favourited: false},
-                {name: 'Evelyn', favourited: false},
-                {name: 'Genevieve', favourited: false},
-                {name: 'Freya', favourited: false},
-                {name: 'Wren', favourited: false},
-                {name: 'Isla', favourited: false},
-                {name: 'Ava', favourited: false},
-                {name: 'Iris', favourited: false},
-                {name: 'Lily', favourited: false},
-                {name: 'Olivia', favourited: false},
-                {name: 'Adelaide', favourited: false},
-                {name: 'Aria', favourited: false},
-                {name: 'Maeve', favourited: false},
-                {name: 'Eleanor', favourited: false},
-                {name: 'Scarlett', favourited: false},
-                {name: 'Adeline', favourited: false},
-                {name: 'Grace', favourited: false},
-                {name: 'Ophelia', favourited: false},
-                {name: 'Ella', favourited: false},
-                {name: 'Nora', favourited: false},
-                {name: 'Alice', favourited: false},
-                {name: 'Evangeline', favourited: false},
-                {name: 'Naomi', favourited: false},
-                {name: 'Audrey', favourited: false},
-                {name: 'Elizabeth', favourited: false},
-                {name: 'Eloise', favourited: false},
-                {name: 'Lydia', favourited: false},
-                {name: 'Chloe', favourited: false},
-                {name: 'Cora', favourited: false},
-                {name: 'Clara', favourited: false},
-                {name: 'Rose', favourited: false},
-                {name: 'Celeste', favourited: false},
-                {name: 'Juniper', favourited: false},
-                {name: 'Penelope', favourited: false},
-                {name: 'Anastasia', favourited: false},
-                {name: 'Astrid', favourited: false},
-                {name: 'Emma', favourited: false},
-                {name: 'Rosalie', favourited: false},
-                {name: 'Athena', favourited: false},
-                {name: 'Abigail', favourited: false},
-                {name: 'Stella', favourited: false},
-                {name: 'Imogen', favourited: false},
-                {name: 'Phoebe', favourited: false},
+                {name: 'Violet', favourited: false, history: 'Violet: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Charlotte', favourited: false, history: 'Charlotte: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Aurora', favourited: false, history: 'Aurora: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Amelia', favourited: false, history: 'Amelia: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Hazel', favourited: false, history: 'Hazel: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Luna', favourited: false, history: 'Luna: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Sophia', favourited: false, history: 'Sophia: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Ivy', favourited: false, history: 'Ivy: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Evelyn', favourited: false, history: 'Evelyn: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Genevieve', favourited: false, history: 'Genevieve: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Freya', favourited: false, history: 'Freya: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Wren', favourited: false, history: 'Wren: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Isla', favourited: false, history: 'Isla: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Ava', favourited: false, history: 'Ava: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Iris', favourited: false, history: 'Iris: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Lily', favourited: false, history: 'Lily: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Olivia', favourited: false, history: 'Olivia: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Adelaide', favourited: false, history: 'Adelaide: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Aria', favourited: false, history: 'Aria: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Maeve', favourited: false, history: 'Maeve: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Eleanor', favourited: false, history: 'Eleanor: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Scarlett', favourited: false, history: 'Scarlett: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Adeline', favourited: false, history: 'Adeline: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Grace', favourited: false, history: 'Grace: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Ophelia', favourited: false, history: 'Ophelia: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Ella', favourited: false, history: 'Ella: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Nora', favourited: false, history: 'Nora: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Alice', favourited: false, history: 'Alice: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Evangeline', favourited: false, history: 'Evangeline: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Naomi', favourited: false, history: 'Naomi: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Audrey', favourited: false, history: 'Audrey: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Elizabeth', favourited: false, history: 'Elizabeth: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Eloise', favourited: false, history: 'Eloise: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Lydia', favourited: false, history: 'Lydia: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Chloe', favourited: false, history: 'Chloe: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Cora', favourited: false, history: 'Cora: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Clara', favourited: false, history: 'Clara: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Rose', favourited: false, history: 'Rose: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Celeste', favourited: false, history: 'Celeste: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Juniper', favourited: false, history: 'Juniper: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Penelope', favourited: false, history: 'Penelope: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Anastasia', favourited: false, history: 'Anastasia: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Astrid', favourited: false, history: 'Astrid: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Emma', favourited: false, history: 'Emma: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Rosalie', favourited: false, history: 'Rosalie: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Athena', favourited: false, history: 'Athena: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Abigail', favourited: false, history: 'Abigail: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Stella', favourited: false, history: 'Stella: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Imogen', favourited: false, history: 'Imogen: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
+                {name: 'Phoebe', favourited: false, history: 'Phoebe: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'},
             ],
         },
         methods: {
@@ -494,7 +532,7 @@ Vue.filter('capitalize', function (value) {
                 }
             },
             checkCredentials: function() {
-                if (this.username == this.usernameNew && this.password == this.passwordNew //&& this.password != '' && this.username != ''
+                if (this.username == this.usernameNew && this.password == this.passwordNew && this.password != '' && this.username != ''
                 ) {
                     this.showLogin = false;
                     this.showHome = true;
@@ -539,32 +577,11 @@ Vue.filter('capitalize', function (value) {
                 this.emptyMessageGirls = false;
                 return;
             },
-            // filterContains(element) {
-            //     if (this.name.includes(element) == true) {
-            //         return true;
-            //     }
-            //     else {
-            //         return false;
-            //     }
-            // },
-            // filterEndsIn(element) {
-            //     if (this.name.startsWith(element) == true) {
-            //         return true;
-            //     } 
-            //     else {
-            //         return false;
-            //     }
-            // },
-            // filterStartWith() {
-            //     if (this.name.endsIn(element) == true) {
-            //         return true;
-            //     } 
-            //     else {
-            //         return false;
-            //     }
-            // },
-        },
-        components: {
+            searchLibrary: function (object) {
+                this.libraryObject = this.librarySearch;
+                this.librarySearch = '';
+                return null;
+            },
         },
     });
 </script>
