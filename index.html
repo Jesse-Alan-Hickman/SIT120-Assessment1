@@ -248,7 +248,7 @@
                             <!-- Boys Empty Message -->
                             <div class="emptyMessage" v-show="emptyMessageBoys">
                                 <br><br>
-                                <p>You have no favourited boy names.</p>
+                                <empty_boy_component :boy_message="boy_message"></empty_boy_component>
                             </div> 
                         </div>
                     </div>
@@ -280,7 +280,7 @@
                             <!-- Girls Empty Message -->
                             <div class="emptyMessage" v-show="emptyMessageGirls">
                                 <br><br>
-                                <p>You have no favourited girl names.</p>
+                                <empty_girl_component :girl_message="girl_message"></empty_girl_component>
                             </div>
                         </div>
                     </div>
@@ -291,7 +291,7 @@
 
                     <!-- First Name Display -->
                     <div id="firstName">
-                        <p>{{firstName | capitalize }}</p>
+                        <p>{{firstName | capitalize}}</p>
                     </div>
 
                     <!-- Middle Name Display -->
@@ -335,6 +335,21 @@ Vue.filter('capitalize', function (value) {
     </div>
 </script>
 
+<!-- Local Components -->
+<script>
+    var empty_girl_component = {
+            template: '<div> {{ girl_message }} </div>',
+            props: ['girl_message'],
+        };
+</script>
+
+<script>
+    var empty_boy_component = {
+            template: '<div> {{ boy_message }} </div>',
+            props: ['boy_message'],
+        };
+</script>
+
 <!-- #app -->
 <script>
     let app = new Vue({
@@ -360,6 +375,8 @@ Vue.filter('capitalize', function (value) {
             lastNameChange: '',
             emptyMessageBoys: true,
             emptyMessageGirls: true,
+            girl_message: 'You have no favourited girl names.',
+            boy_message: "You have no favourited boy names.",
             firstName: 'First',
             middleName: 'Middle',
             lastName: 'Last',
@@ -583,5 +600,9 @@ Vue.filter('capitalize', function (value) {
                 return null;
             },
         },
+        components: {
+            empty_girl_component,
+            empty_boy_component,
+        }
     });
 </script>
